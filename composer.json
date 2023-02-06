@@ -1,0 +1,20 @@
+{
+    "name": "duukkis/maphpodon",
+    "autoload": {
+        "psr-4": {
+            "Maphpodon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "duukkis",
+            "email": "duukkis@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.5",
+        "thecodingmachine/safe": "^2.4",
+        "nesbot/carbon": "^2.66"
+    }
+}
