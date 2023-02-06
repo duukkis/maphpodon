@@ -48,4 +48,15 @@ class Mapper
         }
         return $obj;
     }
+
+    public static function cleanParams(array $params, array $keep): array
+    {
+        return array_filter($params,
+            function($v) use ($keep) {
+                return in_array($v, $keep);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+    }
+
 }

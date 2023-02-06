@@ -36,11 +36,11 @@ class Maphpodon
         return new Timelines($this);
     }
 
-    public function get(string $url)
+    public function get(string $url, array $params = [])
     {
         try {
             $headers = ($this->authToken !== null) ? ["headers" => ["Bearer " . $this->authToken]] : [];
-            $response = $this->client->get($url, $headers);
+            $response = $this->client->get($url, array_merge($params, $headers));
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             print_r($exception->getMessage());
