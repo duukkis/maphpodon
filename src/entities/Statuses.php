@@ -33,4 +33,12 @@ class Statuses
             "Maphpodon\instances\Status"
         );
     }
+
+    public function delete(string $id): Status
+    {
+        return $this->maphpodon->mapObjectToClass(
+            $this->maphpodon->delete(sprintf('statuses/%s', $id), []),
+            "Maphpodon\instances\Status"
+        );
+    }
 }

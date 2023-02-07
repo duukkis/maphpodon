@@ -67,6 +67,22 @@ class Maphpodon
         }
     }
 
+    public function delete(string $url, array $params = [])
+    {
+        try {
+            $headers = [];
+            if ($this->authToken !== null) {
+                $headers["Authorization"] = "Bearer " . $this->authToken;
+            }
+            $params["headers"] = $headers;
+            $response = $this->client->delete($url, $params);
+            return $this->parseJson($response->getBody()->getContents());
+        } catch (Exception $exception) {
+            print_r($exception->getMessage());
+            die();
+        }
+    }
+
     private function parseJson(string $contents): mixed
     {
         return \Safe\json_decode($contents);
