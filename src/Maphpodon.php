@@ -3,6 +3,7 @@ namespace Maphpodon;
 
 use Exception;
 use GuzzleHttp\Client;
+use Maphpodon\entities\Media;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
 use Maphpodon\instances\Model;
@@ -20,7 +21,7 @@ class Maphpodon
     )
     {
         $this->client = $client ?? new Client([
-            'base_uri'=> 'https://' . $domain . '/api/v1/',
+            'base_uri'=> 'https://' . $domain . '/api/',
             'timeout' => 10,
         ]);
     }
@@ -33,6 +34,11 @@ class Maphpodon
     public function timelines(): Timelines
     {
         return new Timelines($this);
+    }
+
+    public function media(): Media
+    {
+        return new Media($this);
     }
 
     public function get(string $url, array $params = [])
@@ -62,6 +68,23 @@ class Maphpodon
             $params["headers"] = $headers;
             $response = $this->client->post($url, $params);
             return $this->parseJson($response->getBody()->getContents());
+        } catch (Exception $exception) {
+            print_r($exception->getMessage());
+            die();
+        }
+    }
+
+    public function upload(string $url, array $params = [])
+    {
+        try {
+            $headers = [];
+            if ($this->authToken !== null) {
+                $headers["Authorization"] = "Bearer " . $this->authToken;
+            }
+            $params["headers"] = $headers;
+            $response = $this->client->post($url, $params);
+            $x = $this->parseJson($response->getBody()->getContents());
+            return $x;
         } catch (Exception $exception) {
             print_r($exception->getMessage());
             die();

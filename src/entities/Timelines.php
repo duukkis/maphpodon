@@ -23,7 +23,7 @@ class Timelines
             ["local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
         );
         return $this->maphpodon->mapObjectToClassArray(
-            $this->maphpodon->get('timelines/public', ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/public', ["query" => $params]),
             new Status()
         );
     }
@@ -38,7 +38,7 @@ class Timelines
             ["max_id", "since_id", "min_id", "limit"]
         );
         return $this->maphpodon->mapObjectToClassArray(
-            $this->maphpodon->get('timelines/home', ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/home', ["query" => $params]),
             new Status()
         );
     }
@@ -53,7 +53,7 @@ class Timelines
             ["any[]", "all[]", "none[]", "local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
         );
         return $this->maphpodon->mapObjectToClassArray(
-            $this->maphpodon->get('timelines/tag/' . $tag, ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/tag/' . $tag, ["query" => $params]),
             new Status()
         );
     }
