@@ -64,7 +64,8 @@ class Maphpodon
             if ($this->authToken !== null) {
                 $headers["Authorization"] = "Bearer " . $this->authToken;
             }
-            $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . implode(";", $params["json"]));
+            // forget this for now
+            // $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . );
             $params["headers"] = $headers;
             $response = $this->client->post($url, $params);
             return $this->parseJson($response->getBody()->getContents());

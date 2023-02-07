@@ -17,7 +17,7 @@ class Statuses
     {
         $params = Mapper::cleanParams(
             $params,
-            ["status", "media_ids[]", "poll[options][]", "poll[expires_in]", "poll[multiple]", "poll[hide_totals]", "in_reply_to_id", "sensitive", "spoiler_text", "visibility", "language", "scheduled_at"]
+            ["status", "media_ids", "poll[options][]", "poll[expires_in]", "poll[multiple]", "poll[hide_totals]", "in_reply_to_id", "sensitive", "spoiler_text", "visibility", "language", "scheduled_at"]
         );
         $params = ["json" => $params];
         return $this->maphpodon->mapObjectToClass(
