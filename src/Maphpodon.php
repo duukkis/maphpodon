@@ -5,8 +5,6 @@ use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
-use Maphpodon\instances\Status;
-use ReflectionClass;
 
 class Maphpodon
 {
@@ -47,9 +45,28 @@ class Maphpodon
         }
     }
 
+    public function post(string $url, array $params = [])
+    {
+        try {
+            $headers = [];
+            $headers["Authorization"] = "Bearer " . $this->authToken;
+            $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . implode(";", $params["json"]));
+            $params["headers"] = $headers;
+            $response = $this->client->post($url, $params);
+            return $this->parseJson($response->getBody()->getContents());
+        } catch (Exception $exception) {
+            print_r($exception->getMessage());
+        }
+    }
+
     private function parseJson(string $contents): mixed
     {
         return \Safe\json_decode($contents);
+    }
+
+    public function mapObjectToClass(mixed $item, string $className): mixed
+    {
+        return $className::build($item);
     }
 
     public function mapObjectToClassArray(array $items, string $className): array

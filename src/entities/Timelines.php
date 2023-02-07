@@ -3,6 +3,7 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
+use Maphpodon\instances\Status;
 use Maphpodon\Maphpodon;
 
 class Timelines
@@ -13,7 +14,7 @@ class Timelines
     }
 
     /**
-     * @return array
+     * @return Status[]
      */
     public function public(array $params =  []): array
     {
@@ -27,6 +28,9 @@ class Timelines
         );
     }
 
+    /**
+     * @return Status[]
+     */
     public function home(array $params =  []): array
     {
         $params = Mapper::cleanParams(
@@ -38,7 +42,10 @@ class Timelines
             "Maphpodon\instances\Status"
         );
     }
-    
+
+    /**
+     * @return Status[]
+     */
     public function tag(string $tag, array $params = []): array
     {
         $params = Mapper::cleanParams(
