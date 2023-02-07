@@ -50,7 +50,7 @@ class Timelines
     {
         $params = Mapper::cleanParams(
             $params,
-            ["any[]", "all[]", "none[]", "local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
+            ["any", "all", "none", "local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
         );
         return $this->maphpodon->mapObjectToClassArray(
             $this->maphpodon->get('v1/timelines/tag/' . $tag, ["query" => $params]),
