@@ -5,7 +5,7 @@ namespace Maphpodon\instances;
 use Carbon\Carbon;
 use Maphpodon\helpers\Mapper;
 
-class Status
+class Status extends Model
 {
     public string $id;
     public Carbon $created_at;
@@ -31,9 +31,4 @@ class Status
     public array $emojis;
     public ?string $card;
     public ?string $poll;
-
-    public static function build(\stdClass $item): Status
-    {
-        return Mapper::map($item, new Status());
-    }
 }

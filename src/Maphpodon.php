@@ -5,6 +5,7 @@ use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
+use Maphpodon\instances\Model;
 
 class Maphpodon
 {
@@ -88,16 +89,16 @@ class Maphpodon
         return \Safe\json_decode($contents);
     }
 
-    public function mapObjectToClass(mixed $item, string $className): mixed
+    public function mapObjectToClass(mixed $item, Model $model): mixed
     {
-        return $className::build($item);
+        return $model::build($item, $model);
     }
 
-    public function mapObjectToClassArray(array $items, string $className): array
+    public function mapObjectToClassArray(array $items, Model $model): array
     {
         $result = [];
         foreach ($items as $i => $item) {
-            $entity = $className::build($item);
+            $entity = $model::build($item, $model);
             array_push($result, $entity);
         }
         return $result;

@@ -22,7 +22,7 @@ class Statuses
         $params = ["json" => $params];
         return $this->maphpodon->mapObjectToClass(
             $this->maphpodon->post('statuses', $params),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 
@@ -30,7 +30,7 @@ class Statuses
     {
         return $this->maphpodon->mapObjectToClass(
             $this->maphpodon->get(sprintf('statuses/%s', $id), []),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 
@@ -38,7 +38,7 @@ class Statuses
     {
         return $this->maphpodon->mapObjectToClass(
             $this->maphpodon->delete(sprintf('statuses/%s', $id), []),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 }

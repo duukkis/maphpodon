@@ -41,7 +41,7 @@ class Mapper
                 }*/
                 break;
             case "Maphpodon\instances\Account":
-                $obj->$key = Account::build($val);
+                $obj->$key = Account::build($val, new Account());
                 break;
             default:
                 die($type);

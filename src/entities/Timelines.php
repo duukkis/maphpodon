@@ -24,7 +24,7 @@ class Timelines
         );
         return $this->maphpodon->mapObjectToClassArray(
             $this->maphpodon->get('timelines/public', ["query" => $params]),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 
@@ -39,7 +39,7 @@ class Timelines
         );
         return $this->maphpodon->mapObjectToClassArray(
             $this->maphpodon->get('timelines/home', ["query" => $params]),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 
@@ -54,7 +54,7 @@ class Timelines
         );
         return $this->maphpodon->mapObjectToClassArray(
             $this->maphpodon->get('timelines/tag/' . $tag, ["query" => $params]),
-            "Maphpodon\instances\Status"
+            new Status()
         );
     }
 }

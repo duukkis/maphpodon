@@ -5,7 +5,7 @@ namespace Maphpodon\instances;
 use Carbon\Carbon;
 use Maphpodon\helpers\Mapper;
 
-class Account
+class Account extends Model
 {
     public string $id;
     public string $username;
@@ -29,10 +29,4 @@ class Account
     public bool $noindex;
     public array $emojis;
     public array $fields;
-
-
-    public static function build(\stdClass $item): Account
-    {
-        return Mapper::map($item, new Account());
-    }
 }
