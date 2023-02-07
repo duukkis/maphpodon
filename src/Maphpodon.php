@@ -37,11 +37,16 @@ class Maphpodon
     public function get(string $url, array $params = [])
     {
         try {
-            $headers = ($this->authToken !== null) ? ["headers" => ["Bearer " . $this->authToken]] : [];
-            $response = $this->client->get($url, array_merge($params, $headers));
+            $headers = [];
+            if ($this->authToken !== null) {
+                $headers["Authorization"] = "Bearer " . $this->authToken;
+            }
+            $params["headers"] = $headers;
+            $response = $this->client->get($url, $params);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             print_r($exception->getMessage());
+            die();
         }
     }
 
@@ -49,13 +54,16 @@ class Maphpodon
     {
         try {
             $headers = [];
-            $headers["Authorization"] = "Bearer " . $this->authToken;
+            if ($this->authToken !== null) {
+                $headers["Authorization"] = "Bearer " . $this->authToken;
+            }
             $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . implode(";", $params["json"]));
             $params["headers"] = $headers;
             $response = $this->client->post($url, $params);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             print_r($exception->getMessage());
+            die();
         }
     }
 

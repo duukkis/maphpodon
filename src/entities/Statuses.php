@@ -20,6 +20,17 @@ class Statuses
             ["status", "media_ids[]", "poll[options][]", "poll[expires_in]", "poll[multiple]", "poll[hide_totals]", "in_reply_to_id", "sensitive", "spoiler_text", "visibility", "language", "scheduled_at"]
         );
         $params = ["json" => $params];
-        return $this->maphpodon->mapObjectToClass($this->maphpodon->post('statuses', $params), "Maphpodon\instances\Status");
+        return $this->maphpodon->mapObjectToClass(
+            $this->maphpodon->post('statuses', $params),
+            "Maphpodon\instances\Status"
+        );
+    }
+
+    public function get(string $id): Status
+    {
+        return $this->maphpodon->mapObjectToClass(
+            $this->maphpodon->get(sprintf('statuses/%s', $id), []),
+            "Maphpodon\instances\Status"
+        );
     }
 }
