@@ -4,10 +4,10 @@ namespace Maphpodon;
 use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Media;
+use Maphpodon\entities\Notifications;
 use Maphpodon\entities\Search;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
-use Maphpodon\instances\Model;
 
 class Maphpodon
 {
@@ -45,6 +45,11 @@ class Maphpodon
     public function search(): Search
     {
         return new Search($this);
+    }
+
+    public function notifications(): Notifications
+    {
+        return new Notifications($this);
     }
 
     public function get(string $url, array $params = [])

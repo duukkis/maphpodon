@@ -38,4 +38,9 @@ $masto = new Maphpodon(
 // $result = $masto->media()->get("109825314440397270");
 ####### post with media
 // $result = $masto->statuses()->post(["status" => "dippa", "media_ids" => ["109825314440397270"]]);
+
+####### Notifications
+// $result = $masto->notifications()->index();
+// $result = $masto->notifications()->get("1");
+// $masto->notifications()->clear();
 ```
