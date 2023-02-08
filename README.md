@@ -42,5 +42,6 @@ $masto = new Maphpodon(
 ####### Notifications
 // $result = $masto->notifications()->index();
 // $result = $masto->notifications()->get("1");
+// $masto->notifications()->dismiss("1");
 // $masto->notifications()->clear();
 ```

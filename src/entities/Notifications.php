@@ -39,6 +39,16 @@ class Notifications
     }
 
     /**
+     * @link https://docs.joinmastodon.org/methods/notifications/#dismiss
+     * @param string $id
+     * @return void
+     */
+    public function dismiss(string $id): void
+    {
+        $this->maphpodon->post(sprintf('v1/notifications/%s/dismiss', $id), []);
+    }
+
+    /**
      * @link https://docs.joinmastodon.org/methods/notifications/#clear
      * @return void
      */
