@@ -50,4 +50,12 @@ $masto = new Maphpodon(
 
 ####### Accounts
 // $result = $masto->accounts()->get("109807809719057795");
+// $result = $masto->accounts()->statuses("109807809719057795", ["min_id" => "109816527054798413", "limit" => 4]);
+// $result = $masto->accounts()->followers("109807809719057795", ["limit" => 2]);
+// $result = $masto->accounts()->featured_tags("109807491887075545", []);
+// $result = $masto->accounts()->lists("109817168119540210", []);
+// $result = $masto->accounts()->follow("109817168119540210");
+// $result = $masto->accounts()->unfollow("109817168119540210");
+// $result = $masto->accounts()->pin/unpin/block/unblock/...("109817168119540210");
+
 ```

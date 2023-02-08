@@ -6,9 +6,11 @@ use Carbon\Carbon;
 use InvalidArgumentException;
 use Maphpodon\models\Account;
 use Maphpodon\models\Application;
+use Maphpodon\models\FeatureTag;
 use Maphpodon\models\Field;
 use Maphpodon\models\MediaAttachment;
 use Maphpodon\models\Mention;
+use Maphpodon\models\MList;
 use Maphpodon\models\Model;
 use Maphpodon\models\Status;
 use Maphpodon\models\Tag;
@@ -75,6 +77,9 @@ class Mapper
             case "Maphpodon\models\Application":
                 $obj->$key = Application::build($val, new Application());
                 break;
+            case "Maphpodon\models\FeatureTag":
+                $obj->$key = FeatureTag::build($val, new FeatureTag());
+                break;
             case "Maphpodon\models\Field":
                 $obj->$key = Field::build($val, new Field());
                 break;
@@ -83,6 +88,9 @@ class Mapper
                 break;
             case "Maphpodon\models\Mention":
                 $obj->$key = Mention::build($val, new Mention());
+                break;
+            case "Maphpodon\models\MList":
+                $obj->$key = MList::build($val, new MList());
                 break;
             case "Maphpodon\models\Status":
                 $obj->$key = Status::build($val, new Status());
