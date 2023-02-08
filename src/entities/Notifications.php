@@ -46,6 +46,4 @@ class Notifications
     {
         $this->maphpodon->post('v1/notifications/clear', []);
     }
-
-
 }
