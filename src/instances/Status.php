@@ -3,7 +3,6 @@
 namespace Maphpodon\instances;
 
 use Carbon\Carbon;
-use Maphpodon\helpers\Mapper;
 
 class Status extends Model
 {
@@ -23,12 +22,18 @@ class Status extends Model
     public ?Carbon $edited_at;
     public string $content;
     public ?string $reblog;
-    public array $application;
+    public Application $application;
     public Account $account;
-    public array $media_attachments;
-    public array $mentions;
-    public array $tags;
-    public array $emojis;
+    public array $media_attachments = [];
+    public array $mentions = [];
+    public array $tags = [];
+    public array $emojis = [];
     public ?string $card;
     public ?string $poll;
+
+    public array $mapArrayToObjects = [
+        "media_attachments" => MediaAttachment::class,
+        "mentions" => Mention::class,
+        "tags" => Tag::class,
+    ];
 }

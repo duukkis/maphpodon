@@ -2,6 +2,7 @@
 
 namespace Maphpodon\entities;
 
+use Maphpodon\helpers\Mapper;
 use Maphpodon\instances\Account;
 use Maphpodon\instances\Status;
 use Maphpodon\Maphpodon;
@@ -21,7 +22,7 @@ class Statuses
     public function post(array $params = []): Status
     {
         $params = ["json" => $params];
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post('v1/statuses', $params),
             new Status()
         );
@@ -34,7 +35,7 @@ class Statuses
      */
     public function get(string $id): Status
     {
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/statuses/%s', $id), []),
             new Status()
         );
@@ -47,7 +48,7 @@ class Statuses
      */
     public function delete(string $id): Status
     {
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->delete(sprintf('v1/statuses/%s', $id), []),
             new Status()
         );
@@ -60,7 +61,7 @@ class Statuses
      */
     public function reblogged_by($id): array
     {
-        return $this->maphpodon->mapObjectToClassArray(
+        return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get(sprintf('v1/statuses/%s/reblogged_by', $id), []),
             new Account()
         );
@@ -73,7 +74,7 @@ class Statuses
      */
     public function favourited_by($id): array
     {
-        return $this->maphpodon->mapObjectToClassArray(
+        return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get(sprintf('v1/statuses/%s/favourited_by', $id), []),
             new Account()
         );
@@ -86,7 +87,7 @@ class Statuses
      */
     public function favourite($id): Status
     {
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/statuses/%s/favourite', $id), []),
             new Status()
         );

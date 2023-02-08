@@ -2,6 +2,7 @@
 
 namespace Maphpodon\entities;
 
+use Maphpodon\helpers\Mapper;
 use Maphpodon\instances\MediaAttachment;
 use Maphpodon\Maphpodon;
 
@@ -27,7 +28,7 @@ class Media
                 'contents' => fopen($absoluteFilePath, 'r')
             ]
         ];
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->upload('v2/media', $params),
             new MediaAttachment()
         );
@@ -35,7 +36,7 @@ class Media
 
     public function get(string $id): MediaAttachment
     {
-        return $this->maphpodon->mapObjectToClass(
+        return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/media/%s', $id), []),
             new MediaAttachment()
         );

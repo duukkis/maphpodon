@@ -22,7 +22,7 @@ class Timelines
             $params,
             ["local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
         );
-        return $this->maphpodon->mapObjectToClassArray(
+        return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get('v1/timelines/public', ["query" => $params]),
             new Status()
         );
@@ -37,7 +37,7 @@ class Timelines
             $params,
             ["max_id", "since_id", "min_id", "limit"]
         );
-        return $this->maphpodon->mapObjectToClassArray(
+        return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get('v1/timelines/home', ["query" => $params]),
             new Status()
         );
@@ -52,7 +52,7 @@ class Timelines
             $params,
             ["any", "all", "none", "local", "remote", "only_media", "max_id", "since_id", "min_id", "limit"]
         );
-        return $this->maphpodon->mapObjectToClassArray(
+        return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get('v1/timelines/tag/' . $tag, ["query" => $params]),
             new Status()
         );

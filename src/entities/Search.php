@@ -2,6 +2,7 @@
 
 namespace Maphpodon\entities;
 
+use Maphpodon\helpers\Mapper;
 use Maphpodon\instances\Account;
 use Maphpodon\instances\Status;
 use Maphpodon\Maphpodon;
@@ -22,11 +23,11 @@ class Search
     {
         $result = $this->maphpodon->get('v2/search', ["query" => $params]);
         return [
-            "accounts" => $this->maphpodon->mapObjectToClassArray(
+            "accounts" => Mapper::mapJsonObjectToClassArray(
                 $result->accounts ?? [],
                 new Account()
             ),
-            "statuses" => $this->maphpodon->mapObjectToClassArray(
+            "statuses" => Mapper::mapJsonObjectToClassArray(
                 $result->statuses ?? [],
                 new Status()
             ),

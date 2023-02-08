@@ -118,19 +118,4 @@ class Maphpodon
     {
         return \Safe\json_decode($contents);
     }
-
-    public function mapObjectToClass(mixed $item, Model $model): mixed
-    {
-        return $model::build($item, $model);
-    }
-
-    public function mapObjectToClassArray(array $items, Model $model): array
-    {
-        $result = [];
-        foreach ($items as $i => $item) {
-            $entity = $model::build($item, $model);
-            array_push($result, $entity);
-        }
-        return $result;
-    }
 }
