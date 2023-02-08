@@ -3,6 +3,7 @@ namespace Maphpodon;
 
 use Exception;
 use GuzzleHttp\Client;
+use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
 use Maphpodon\entities\Search;
@@ -40,6 +41,11 @@ class Maphpodon
     public function media(): Media
     {
         return new Media($this);
+    }
+
+    public function instance(): Instance
+    {
+        return new Instance($this);
     }
 
     public function search(): Search
