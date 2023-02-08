@@ -1,6 +1,6 @@
 <?php
 
-namespace Maphpodon\instances;
+namespace Maphpodon\models;
 
 use Carbon\Carbon;
 use Maphpodon\helpers\Mapper;

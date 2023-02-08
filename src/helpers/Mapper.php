@@ -4,14 +4,14 @@ namespace Maphpodon\helpers;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
-use Maphpodon\instances\Account;
-use Maphpodon\instances\Application;
-use Maphpodon\instances\Field;
-use Maphpodon\instances\MediaAttachment;
-use Maphpodon\instances\Mention;
-use Maphpodon\instances\Model;
-use Maphpodon\instances\Status;
-use Maphpodon\instances\Tag;
+use Maphpodon\models\Account;
+use Maphpodon\models\Application;
+use Maphpodon\models\Field;
+use Maphpodon\models\MediaAttachment;
+use Maphpodon\models\Mention;
+use Maphpodon\models\Model;
+use Maphpodon\models\Status;
+use Maphpodon\models\Tag;
 
 class Mapper
 {
@@ -69,25 +69,25 @@ class Mapper
                     }
                 }
                 break;
-            case "Maphpodon\instances\Account":
+            case "Maphpodon\models\Account":
                 $obj->$key = Account::build($val, new Account());
                 break;
-            case "Maphpodon\instances\Application":
+            case "Maphpodon\models\Application":
                 $obj->$key = Application::build($val, new Application());
                 break;
-            case "Maphpodon\instances\Field":
+            case "Maphpodon\models\Field":
                 $obj->$key = Field::build($val, new Field());
                 break;
-            case "Maphpodon\instances\MediaAttachment":
+            case "Maphpodon\models\MediaAttachment":
                 $obj->$key = MediaAttachment::build($val, new MediaAttachment());
                 break;
-            case "Maphpodon\instances\Mention":
+            case "Maphpodon\models\Mention":
                 $obj->$key = Mention::build($val, new Mention());
                 break;
-            case "Maphpodon\instances\Status":
+            case "Maphpodon\models\Status":
                 $obj->$key = Status::build($val, new Status());
                 break;
-            case "Maphpodon\instances\Tag":
+            case "Maphpodon\models\Tag":
                 $obj->$key = Tag::build($val, new Tag());
                 break;
             default:

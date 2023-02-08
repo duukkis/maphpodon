@@ -3,8 +3,8 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\instances\Account;
-use Maphpodon\instances\Status;
+use Maphpodon\models\Account;
+use Maphpodon\models\Status;
 use Maphpodon\Maphpodon;
 
 class Statuses

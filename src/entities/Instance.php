@@ -4,7 +4,7 @@ namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
 use Maphpodon\Maphpodon;
-use Maphpodon\instances\Instance as InstanceModel;
+use Maphpodon\models\Instance as InstanceModel;
 class Instance
 {
     public function __construct(protected Maphpodon $maphpodon)

@@ -3,7 +3,7 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\instances\Notification;
+use Maphpodon\models\Notification;
 use Maphpodon\Maphpodon;
 class Notifications
 {

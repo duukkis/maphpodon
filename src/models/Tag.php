@@ -1,6 +1,6 @@
 <?php
 
-namespace Maphpodon\instances;
+namespace Maphpodon\models;
 class Tag extends Model
 {
     public string $name;

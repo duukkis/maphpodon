@@ -1,6 +1,7 @@
 <?php
 
-namespace Maphpodon\instances;
+namespace Maphpodon\models;
+
 class Mention extends Model
 {
     public string $id;

@@ -3,7 +3,7 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\instances\Status;
+use Maphpodon\models\Status;
 use Maphpodon\Maphpodon;
 
 class Timelines
