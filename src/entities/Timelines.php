@@ -10,13 +10,12 @@ class Timelines
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     /**
      * @return Status[]
      */
-    public function public(array $params =  []): array
+    public function public(array $params = []): array
     {
         $params = Mapper::cleanParams(
             $params,
@@ -31,7 +30,7 @@ class Timelines
     /**
      * @return Status[]
      */
-    public function home(array $params =  []): array
+    public function home(array $params = []): array
     {
         $params = Mapper::cleanParams(
             $params,

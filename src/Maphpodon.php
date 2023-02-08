@@ -1,4 +1,5 @@
 <?php
+
 namespace Maphpodon;
 
 use Exception;
@@ -21,12 +22,13 @@ class Maphpodon
         public ?string $clientSecret = null,
         public ?string $authToken = null,
         ?Client $client = null
-    )
-    {
-        $this->client = $client ?? new Client([
-            'base_uri'=> 'https://' . $domain . '/api/',
-            'timeout' => 10,
-        ]);
+    ) {
+        $this->client = $client ?? new Client(
+            [
+                'base_uri' => 'https://' . $domain . '/api/',
+                'timeout' => 10,
+            ]
+        );
     }
 
     public function get(string $url, array $params = [])

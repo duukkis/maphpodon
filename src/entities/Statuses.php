@@ -11,7 +11,6 @@ class Statuses
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     /**

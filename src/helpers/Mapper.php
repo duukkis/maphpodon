@@ -34,7 +34,7 @@ class Mapper
 
     public static function map(\stdClass $json, Model $obj): Model
     {
-        foreach($json as $key => $val) {
+        foreach ($json as $key => $val) {
             if (property_exists($obj, $key)) {
                 $obj = static::mapItem($obj, $key, $val);
             }
@@ -106,12 +106,12 @@ class Mapper
 
     public static function cleanParams(array $params, array $keep): array
     {
-        return array_filter($params,
-            function($v) use ($keep) {
+        return array_filter(
+            $params,
+            function ($v) use ($keep) {
                 return in_array($v, $keep);
             },
             ARRAY_FILTER_USE_KEY
         );
     }
-
 }

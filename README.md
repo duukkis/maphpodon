@@ -29,7 +29,7 @@ $masto = new Maphpodon(
 ####### Remote status favourite
 // find a remote post, use resolve true! so it gets federated to local instance
 // $result = $masto->search()->get(["q" => "https://mas.to/@duukkis/109818862518591984", "resolve" => true]);
-/** @var \Maphpodon\instances\Status $status */
+/** @var \Maphpodon\models\Status $status */
 // $status = $result["statuses"][0];
 // $result = $masto->statuses()->favourite($status->id);
 

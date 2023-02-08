@@ -16,5 +16,8 @@
         "guzzlehttp/guzzle": "^7.5",
         "thecodingmachine/safe": "^2.4",
         "nesbot/carbon": "^2.66"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
     }
 }

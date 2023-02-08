@@ -5,11 +5,11 @@ namespace Maphpodon\entities;
 use Maphpodon\helpers\Mapper;
 use Maphpodon\models\Notification;
 use Maphpodon\Maphpodon;
+
 class Notifications
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     /**

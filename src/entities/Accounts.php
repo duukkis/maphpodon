@@ -14,7 +14,6 @@ class Accounts
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     /**

@@ -10,7 +10,6 @@ class Media
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     public function post(string $absoluteFilePath, ?string $absoluteThumbnailPath, array $params = []): MediaAttachment

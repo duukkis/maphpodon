@@ -1,6 +1,7 @@
 <?php
 
 namespace Maphpodon\models;
+
 use Carbon\Carbon;
 
 class Field extends Model

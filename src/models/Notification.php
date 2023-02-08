@@ -1,6 +1,7 @@
 <?php
 
 namespace Maphpodon\models;
+
 use Carbon\Carbon;
 
 class Notification extends Model

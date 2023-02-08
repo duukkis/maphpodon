@@ -6,11 +6,11 @@ use Maphpodon\helpers\Mapper;
 use Maphpodon\models\Account;
 use Maphpodon\models\Status;
 use Maphpodon\Maphpodon;
+
 class Search
 {
     public function __construct(protected Maphpodon $maphpodon)
     {
-
     }
 
     /**
