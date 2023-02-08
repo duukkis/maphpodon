@@ -16,7 +16,7 @@ $masto = new Maphpodon(
 ####### Timelines
 // $result = $masto->timelines()->public(["limit" => 10]);
 // $result = $masto->timelines()->home(["limit" => 2]);
-// $result = $masto->timelines()->tag("kala");
+// $result = $masto->timelines()->tag("fish");
 
 ####### Statuses
 // $result = $masto->statuses()->post(["status" => "testi"]);
@@ -25,9 +25,13 @@ $masto = new Maphpodon(
 // $result = $masto->statuses()->delete("109823185566762882");
 // $result = $masto->statuses()->reblogged_by("109825461095585733");
 // $result = $masto->statuses()->favourited_by("109825461095585733");
-// this needs domain as the id can be on other instance
-// the original is somehow federated to a local post that can be favourited
-// $result = $masto->statuses()->favourite("109825461095585733");
+
+####### Remote status favourite
+// find a remote post, use resolve true! so it gets federated to local instance
+// $result = $masto->search()->get(["q" => "https://mas.to/@duukkis/109818862518591984", "resolve" => true]);
+/** @var \Maphpodon\instances\Status $status */
+// $status = $result["statuses"][0];
+// $result = $masto->statuses()->favourite($status->id);
 
 ####### Media handling
 // $result = $masto->media()->post("./IMG_6298.jpg", null, ["description" => "testikuva"]);

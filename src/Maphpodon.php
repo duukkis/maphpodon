@@ -4,6 +4,7 @@ namespace Maphpodon;
 use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Media;
+use Maphpodon\entities\Search;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
 use Maphpodon\instances\Model;
@@ -39,6 +40,11 @@ class Maphpodon
     public function media(): Media
     {
         return new Media($this);
+    }
+
+    public function search(): Search
+    {
+        return new Search($this);
     }
 
     public function get(string $url, array $params = [])
