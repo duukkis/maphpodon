@@ -3,6 +3,7 @@ namespace Maphpodon;
 
 use Exception;
 use GuzzleHttp\Client;
+use Maphpodon\entities\Accounts;
 use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
@@ -26,36 +27,6 @@ class Maphpodon
             'base_uri'=> 'https://' . $domain . '/api/',
             'timeout' => 10,
         ]);
-    }
-
-    public function statuses(): Statuses
-    {
-        return new Statuses($this);
-    }
-
-    public function timelines(): Timelines
-    {
-        return new Timelines($this);
-    }
-
-    public function media(): Media
-    {
-        return new Media($this);
-    }
-
-    public function instance(): Instance
-    {
-        return new Instance($this);
-    }
-
-    public function search(): Search
-    {
-        return new Search($this);
-    }
-
-    public function notifications(): Notifications
-    {
-        return new Notifications($this);
     }
 
     public function get(string $url, array $params = [])
@@ -128,5 +99,40 @@ class Maphpodon
     private function parseJson(string $contents): mixed
     {
         return \Safe\json_decode($contents);
+    }
+
+    public function accounts(): Accounts
+    {
+        return new Accounts($this);
+    }
+
+    public function statuses(): Statuses
+    {
+        return new Statuses($this);
+    }
+
+    public function timelines(): Timelines
+    {
+        return new Timelines($this);
+    }
+
+    public function media(): Media
+    {
+        return new Media($this);
+    }
+
+    public function instance(): Instance
+    {
+        return new Instance($this);
+    }
+
+    public function search(): Search
+    {
+        return new Search($this);
+    }
+
+    public function notifications(): Notifications
+    {
+        return new Notifications($this);
     }
 }

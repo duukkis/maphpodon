@@ -47,4 +47,7 @@ $masto = new Maphpodon(
 
 ####### Instance
 // $result = $masto->instance()->index();
+
+####### Accounts
+// $result = $masto->accounts()->get("109807809719057795");
 ```
