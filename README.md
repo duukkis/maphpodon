@@ -109,6 +109,13 @@ Maphpodon\models\Token Object
     [created_at] => 1675972651
 )
 */
+$result = $masto->auth()->revoke(
+    [
+        "client_id" => $masto->clientKey,
+        "client_secret" => $masto->clientSecret,
+        "token" => "HERE-IS-A-TOKEN-YOU-CAN-USE",
+    ]
+);
 
 ####### Apps
 $result = $masto->apps()->post(

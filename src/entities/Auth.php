@@ -14,6 +14,11 @@ class Auth
     }
 
     /**
+     * @link https://docs.joinmastodon.org/methods/oauth/#authorize
+     * @param string $scope
+     * @param string $redirectUrl
+     * @param string $forceLogin
+     * @param string $lang
      * @return string
      */
     public function authorize(
@@ -21,8 +26,7 @@ class Auth
         string $redirectUrl = "urn:ietf:wg:oauth:2.0:oob",
         string $forceLogin = "true",
         string $lang = "en"
-    ): string
-    {
+    ): string {
         return 'https://' . $this->maphpodon->getDomain() . '/oauth/authorize' .
             '?response_type=code' .
             '&client_id=' . $this->maphpodon->clientKey .
@@ -32,6 +36,11 @@ class Auth
             '&lang=' . $lang;
     }
 
+    /**
+     * @link https://docs.joinmastodon.org/methods/oauth/#token
+     * @param array $params
+     * @return Model|Token
+     */
     public function token(array $params): Model|Token
     {
         $params = ["json" => $params];
@@ -39,5 +48,16 @@ class Auth
             $this->maphpodon->post('oauth/token', $params),
             new Token()
         );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/oauth/#revoke
+     * @param array $params
+     * @return void
+     */
+    public function revoke(array $params): void
+    {
+        $params = ["json" => $params];
+        $this->maphpodon->post('oauth/revoke', $params);
     }
 }
