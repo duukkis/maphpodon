@@ -1,5 +1,6 @@
 {
     "name": "duukkis/maphpodon",
+    "version": "1.0",
     "autoload": {
         "psr-4": {
             "Maphpodon\\": "src/"
