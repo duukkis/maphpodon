@@ -6,14 +6,18 @@ use Carbon\Carbon;
 use InvalidArgumentException;
 use Maphpodon\models\Account;
 use Maphpodon\models\Application;
+use Maphpodon\models\Configuration;
+use Maphpodon\models\Contact;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\Field;
 use Maphpodon\models\MediaAttachment;
 use Maphpodon\models\Mention;
 use Maphpodon\models\MList;
 use Maphpodon\models\Model;
+use Maphpodon\models\Rule;
 use Maphpodon\models\Status;
 use Maphpodon\models\Tag;
+use Maphpodon\models\Thumbnail;
 
 class Mapper
 {
@@ -69,6 +73,12 @@ class Mapper
                         }
                         array_push($obj->$key, $subitem);
                     }
+                } else { // no type defined
+                    $arr = [];
+                    foreach ($val as $j => $sub) {
+                        $arr[$j] = $sub;
+                    }
+                    $obj->$key = $arr;
                 }
                 break;
             case "Maphpodon\models\Account":
@@ -76,6 +86,12 @@ class Mapper
                 break;
             case "Maphpodon\models\Application":
                 $obj->$key = Application::build($val, new Application());
+                break;
+            case "Maphpodon\models\Configuration":
+                $obj->$key = Configuration::build($val, new Configuration());
+                break;
+            case "Maphpodon\models\Contact":
+                $obj->$key = Contact::build($val, new Contact());
                 break;
             case "Maphpodon\models\FeatureTag":
                 $obj->$key = FeatureTag::build($val, new FeatureTag());
@@ -92,11 +108,17 @@ class Mapper
             case "Maphpodon\models\MList":
                 $obj->$key = MList::build($val, new MList());
                 break;
+            case "Maphpodon\models\Rule":
+                $obj->$key = Rule::build($val, new Rule());
+                break;
             case "Maphpodon\models\Status":
                 $obj->$key = Status::build($val, new Status());
                 break;
             case "Maphpodon\models\Tag":
                 $obj->$key = Tag::build($val, new Tag());
+                break;
+            case "Maphpodon\models\Thumbnail":
+                $obj->$key = Thumbnail::build($val, new Thumbnail());
                 break;
             default:
                 throw new InvalidArgumentException($type . " is not mapped");

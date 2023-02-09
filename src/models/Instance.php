@@ -11,5 +11,15 @@ class Instance extends Model
     public string $version;
     public string $source_url;
     public string $description;
-    // TODO plenty of fields and items
+    public array $usage = [];
+    public Thumbnail $thumbnail;
+    public array $languages = [];
+    public Configuration $configuration;
+    public array $registrations;
+    public Contact $contact;
+    public array $rules = [];
+
+    public array $mapArrayToObjects = [
+        "rules" => Rule::class,
+    ];
 }
