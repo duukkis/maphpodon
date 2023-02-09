@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Accounts;
 use Maphpodon\entities\Apps;
+use Maphpodon\entities\Auth;
 use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
@@ -35,6 +36,11 @@ class Maphpodon
             ]
         );
         $this->exceptionCatcher = $exceptionCatcher ?? new MaphpodonExceptionCatcher();
+    }
+
+    public function getDomain(): string
+    {
+        return $this->domain;
     }
 
     public function get(string $url, array $params = []): mixed
@@ -103,6 +109,12 @@ class Maphpodon
     private function parseJson(string $contents): mixed
     {
         return \Safe\json_decode($contents);
+    }
+
+    public function auth(): Auth
+    {
+        // we could fix the client baseUrl here also?
+        return new Auth($this);
     }
 
     public function accounts(): Accounts
