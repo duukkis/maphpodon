@@ -3,8 +3,8 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\models\Account;
-use Maphpodon\models\Status;
+use Maphpodon\models\Model;
+use Maphpodon\models\SearchResult;
 use Maphpodon\Maphpodon;
 
 class Search
@@ -15,28 +15,14 @@ class Search
 
     /**
      * @link https://docs.joinmastodon.org/methods/search/#v2
-     * @TODO populate a typed SearchResult
      * @param array $params
-     * @return array
+     * @return SearchResult
      */
-    public function get(array $params): array
+    public function get(array $params): Model|SearchResult
     {
-        $result = $this->maphpodon->get('v2/search', ["query" => $params]);
-        return [
-            "accounts" => Mapper::mapJsonObjectToClassArray(
-                $result->accounts ?? [],
-                new Account()
-            ),
-            "statuses" => Mapper::mapJsonObjectToClassArray(
-                $result->statuses ?? [],
-                new Status()
-            ),
-            /*
-            "hashtags" => $this->maphpodon->mapObjectToClassArray(
-                $result->hashtags,
-                new HashTag()
-            ),
-            */
-        ];
+        return Mapper::mapJsonObjectToClass(
+            $this->maphpodon->get('v2/search', ["query" => $params]),
+            new SearchResult()
+        );
     }
 }

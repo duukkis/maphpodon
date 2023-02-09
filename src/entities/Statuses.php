@@ -4,6 +4,7 @@ namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
 use Maphpodon\models\Account;
+use Maphpodon\models\Model;
 use Maphpodon\models\Status;
 use Maphpodon\Maphpodon;
 
@@ -18,7 +19,7 @@ class Statuses
      * @param array $params
      * @return Status
      */
-    public function post(array $params = []): Status
+    public function post(array $params = []): Model|Status
     {
         $params = ["json" => $params];
         return Mapper::mapJsonObjectToClass(
@@ -32,7 +33,7 @@ class Statuses
      * @param string $id
      * @return Status
      */
-    public function get(string $id): Status
+    public function get(string $id): Model|Status
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/statuses/%s', $id), []),
@@ -45,7 +46,7 @@ class Statuses
      * @param string $id
      * @return Status
      */
-    public function delete(string $id): Status
+    public function delete(string $id): Model|Status
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->delete(sprintf('v1/statuses/%s', $id), []),
@@ -84,7 +85,7 @@ class Statuses
      * @param $id
      * @return Status
      */
-    public function favourite($id): Status
+    public function favourite($id): Model|Status
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/statuses/%s/favourite', $id), []),

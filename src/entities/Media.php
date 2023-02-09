@@ -5,6 +5,7 @@ namespace Maphpodon\entities;
 use Maphpodon\helpers\Mapper;
 use Maphpodon\models\MediaAttachment;
 use Maphpodon\Maphpodon;
+use Maphpodon\models\Model;
 
 class Media
 {
@@ -12,7 +13,7 @@ class Media
     {
     }
 
-    public function post(string $absoluteFilePath, ?string $absoluteThumbnailPath, array $params = []): MediaAttachment
+    public function post(string $absoluteFilePath, ?string $absoluteThumbnailPath, array $params = []): Model|MediaAttachment
     {
         /**
          *  these need ot go in somehow
@@ -33,7 +34,7 @@ class Media
         );
     }
 
-    public function get(string $id): MediaAttachment
+    public function get(string $id): Model|MediaAttachment
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/media/%s', $id), []),

@@ -3,6 +3,7 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
+use Maphpodon\models\Model;
 use Maphpodon\models\Notification;
 use Maphpodon\Maphpodon;
 
@@ -30,7 +31,7 @@ class Notifications
      * @param string $id
      * @return Notification
      */
-    public function get(string $id): Notification
+    public function get(string $id): Model|Notification
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/notifications/%s', $id), []),

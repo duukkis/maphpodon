@@ -7,6 +7,7 @@ use Maphpodon\Maphpodon;
 use Maphpodon\models\Account;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\MList;
+use Maphpodon\models\Model;
 use Maphpodon\models\Relationship;
 use Maphpodon\models\Status;
 
@@ -21,7 +22,7 @@ class Accounts
      * @param string $id
      * @return Account
      */
-    public function get(string $id): Account
+    public function get(string $id): Model|Account
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->get(sprintf('v1/accounts/%s', $id), []),
@@ -105,7 +106,7 @@ class Accounts
      * @param array $params
      * @return Relationship
      */
-    public function follow(string $id, array $params = []): Relationship
+    public function follow(string $id, array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/follow', $id), $params),
@@ -118,7 +119,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function unfollow(string $id): Relationship
+    public function unfollow(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/unfollow', $id), []),
@@ -131,7 +132,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function remove_from_followers(string $id): Relationship
+    public function remove_from_followers(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/remove_from_followers', $id), []),
@@ -144,7 +145,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function block(string $id): Relationship
+    public function block(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/block', $id), []),
@@ -157,7 +158,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function unblock(string $id): Relationship
+    public function unblock(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/unblock', $id), []),
@@ -171,7 +172,7 @@ class Accounts
      * @param array $params
      * @return Relationship
      */
-    public function mute(string $id, array $params = []): Relationship
+    public function mute(string $id, array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/mute', $id), $params),
@@ -184,7 +185,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function unmute(string $id): Relationship
+    public function unmute(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/unmute', $id), []),
@@ -197,7 +198,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function pin(string $id): Relationship
+    public function pin(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/pin', $id), []),
@@ -210,7 +211,7 @@ class Accounts
      * @param string $id
      * @return Relationship
      */
-    public function unpin(string $id): Relationship
+    public function unpin(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post(sprintf('v1/accounts/%s/unpin', $id), []),
