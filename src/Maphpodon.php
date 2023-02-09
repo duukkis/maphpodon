@@ -12,17 +12,21 @@ use Maphpodon\entities\Notifications;
 use Maphpodon\entities\Search;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
+use Maphpodon\helpers\ExceptionCatcher;
+use Maphpodon\helpers\MaphpodonExceptionCatcher;
 
 class Maphpodon
 {
     protected Client $client;
+    protected ExceptionCatcher $exceptionCatcher;
 
     public function __construct(
         protected string $domain,
         public ?string $clientKey = null,
         public ?string $clientSecret = null,
         public ?string $authToken = null,
-        ?Client $client = null
+        ExceptionCatcher $exceptionCatcher = null,
+        ?Client $client = null,
     ) {
         $this->client = $client ?? new Client(
             [
@@ -30,9 +34,10 @@ class Maphpodon
                 'timeout' => 10,
             ]
         );
+        $this->exceptionCatcher = $exceptionCatcher ?? new MaphpodonExceptionCatcher();
     }
 
-    public function get(string $url, array $params = [])
+    public function get(string $url, array $params = []): mixed
     {
         try {
             $headers = [];
@@ -43,12 +48,11 @@ class Maphpodon
             $response = $this->client->get($url, $params);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
-            print_r($exception->getMessage());
-            die();
+            $this->exceptionCatcher->handleException($exception);
         }
     }
 
-    public function post(string $url, array $params = [])
+    public function post(string $url, array $params = []): mixed
     {
         try {
             $headers = [];
@@ -61,12 +65,11 @@ class Maphpodon
             $response = $this->client->post($url, $params);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
-            print_r($exception->getMessage());
-            die();
+            $this->exceptionCatcher->handleException($exception);
         }
     }
 
-    public function upload(string $url, array $params = [])
+    public function upload(string $url, array $params = []): mixed
     {
         try {
             $headers = [];
@@ -78,12 +81,11 @@ class Maphpodon
             $x = $this->parseJson($response->getBody()->getContents());
             return $x;
         } catch (Exception $exception) {
-            print_r($exception->getMessage());
-            die();
+            $this->exceptionCatcher->handleException($exception);
         }
     }
 
-    public function delete(string $url, array $params = [])
+    public function delete(string $url, array $params = []): mixed
     {
         try {
             $headers = [];
@@ -94,8 +96,7 @@ class Maphpodon
             $response = $this->client->delete($url, $params);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
-            print_r($exception->getMessage());
-            die();
+            $this->exceptionCatcher->handleException($exception);
         }
     }
 
