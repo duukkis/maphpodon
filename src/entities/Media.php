@@ -13,23 +13,32 @@ class Media
     {
     }
 
-    public function post(string $absoluteFilePath, ?string $absoluteThumbnailPath, array $params = []): Model|MediaAttachment
-    {
-        /**
-         *  these need ot go in somehow
-        $params = Mapper::cleanParams(
-            $params,
-            ["description", "focus"]
-        );
-        */
-        $params['multipart'] = [
+    public function post(
+        string $absoluteFilePath,
+        ?string $description = null,
+        ?string $focus = null
+    ): Model|MediaAttachment {
+        $newparams = [];
+        $newparams['multipart'] = [
             [
                 'name'     => 'file',
                 'contents' => fopen($absoluteFilePath, 'r')
             ]
         ];
+        if ($description !== null) {
+            $newparams['multipart'][] = [
+                'name'     => 'description',
+                'contents' => $description
+            ];
+        }
+        if ($focus !== null) {
+            $newparams['multipart'][] = [
+                'name'     => 'focus',
+                'contents' => $focus
+            ];
+        }
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->upload('v2/media', $params),
+            $this->maphpodon->upload('v2/media', $newparams),
             new MediaAttachment()
         );
     }

@@ -12,6 +12,7 @@ class MediaAttachment extends Model
     public string $url;
     public string $preview_url;
     public ?string $remote_url;
+    public ?string $preview_remote_url;
     public ?string $text_url;
     public array $meta;
     public ?string $description;

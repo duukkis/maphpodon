@@ -36,7 +36,7 @@ $status = $result->statuses[0];
 $result = $masto->statuses()->favourite($status->id);
 
 ####### Media handling
-$result = $masto->media()->post("./IMG_6298.jpg", null, ["description" => "testikuva"]);
+$result = $masto->media()->post("./IMG_6298.jpg", "description of somesort", null]);
 $result = $masto->media()->get("109825314440397270");
 ####### post with media
 $result = $masto->statuses()->post(["status" => "dippa", "media_ids" => ["109825314440397270"]]);
