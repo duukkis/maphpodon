@@ -5,6 +5,7 @@ namespace Maphpodon;
 use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Accounts;
+use Maphpodon\entities\Apps;
 use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
@@ -136,5 +137,10 @@ class Maphpodon
     public function notifications(): Notifications
     {
         return new Notifications($this);
+    }
+
+    public function apps(): Apps
+    {
+        return new Apps($this);
     }
 }

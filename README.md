@@ -58,4 +58,15 @@ $masto = new Maphpodon(
 // $result = $masto->accounts()->unfollow("109817168119540210");
 // $result = $masto->accounts()->pin/unpin/block/unblock/...("109817168119540210");
 
+####### Apps
+$result = $masto->apps()->post(
+    [
+        "client_name" => "Duukkis new Api client",
+        "redirect_uris" => "urn:ietf:wg:oauth:2.0:oob",
+        "scopes" => "read follow write:lists",
+        "website" => "https://github.com/duukkis/maphpodon",
+    ]
+);
+$result = $masto->apps()->verify_credentials();
+
 ```
