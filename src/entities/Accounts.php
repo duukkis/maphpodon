@@ -5,6 +5,7 @@ namespace Maphpodon\entities;
 use Maphpodon\helpers\Mapper;
 use Maphpodon\Maphpodon;
 use Maphpodon\models\Account;
+use Maphpodon\models\FamiliarFollowers;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\MList;
 use Maphpodon\models\Model;
@@ -242,6 +243,45 @@ class Accounts
         return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get('v1/accounts/relationships', ["query" => $params]),
             new Relationship()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#familiar_followers
+     * @param array $params
+     * @return FamiliarFollowers[]
+     */
+    public function familiar_followers(array $params = []): array
+    {
+        return Mapper::mapJsonObjectToClassArray(
+            $this->maphpodon->get('v1/accounts/familiar_followers', ["query" => $params]),
+            new FamiliarFollowers()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#search
+     * @param array $params
+     * @return Account[]
+     */
+    public function search(array $params = []): array
+    {
+        return Mapper::mapJsonObjectToClassArray(
+            $this->maphpodon->get('v1/accounts/search', ["query" => $params]),
+            new Account()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#lookup
+     * @param array $params
+     * @return Account
+     */
+    public function lookup(array $params = []): Model|Account
+    {
+        return Mapper::mapJsonObjectToClass(
+            $this->maphpodon->get('v1/accounts/lookup', ["query" => $params]),
+            new Account()
         );
     }
 }

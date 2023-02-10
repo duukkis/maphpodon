@@ -61,6 +61,11 @@ $result = $masto->accounts()->unfollow("109817168119540210");
 $result = $masto->accounts()->pin/unpin/block/unblock/...("109817168119540210");
 $result = $masto->accounts()->note("109817168119540210", ["comment" => "api test"]);
 $result = $masto->accounts()->note("109817168119540210"); // remove comment
+$result = $masto->accounts()->search(["q" => "päivän"]);
+$result = $masto->accounts()->lookup(["acct" => "duukkis"]);
+// these gave me 500, so something there or then it's just my instance
+$result = $masto->accounts()->relationships(["id" => ["109817168119540210", "109813823501112312"]]);
+$result = $masto->accounts()->familiar_followers(["id" => ["109817168119540210", "109813823501112312"]]);
 
 ####### Oauth token fetching
 
