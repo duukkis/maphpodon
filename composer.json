@@ -1,6 +1,13 @@
 {
     "name": "duukkis/maphpodon",
+    "description": "Mastodon REST api-client",
     "version": "1.0.0",
+    "type": "library",
+    "keyword": [
+        "mastodon",
+        "api-client",
+        "rest"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
