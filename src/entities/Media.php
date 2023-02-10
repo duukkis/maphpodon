@@ -13,6 +13,13 @@ class Media
     {
     }
 
+    /**
+     * @link https://docs.joinmastodon.org/methods/media/#v2
+     * @param string $absoluteFilePath
+     * @param string|null $description
+     * @param string|null $focus
+     * @return Model|MediaAttachment
+     */
     public function post(
         string $absoluteFilePath,
         ?string $description = null,
@@ -43,6 +50,11 @@ class Media
         );
     }
 
+    /**
+     * @link https://docs.joinmastodon.org/methods/media/#get
+     * @param string $id
+     * @return Model|MediaAttachment
+     */
     public function get(string $id): Model|MediaAttachment
     {
         return Mapper::mapJsonObjectToClass(

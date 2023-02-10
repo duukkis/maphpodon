@@ -13,7 +13,9 @@ class Timelines
     }
 
     /**
-     * @return Status[]
+     * @link https://docs.joinmastodon.org/methods/timelines/#public
+     * @param array $params
+     * @return array
      */
     public function public(array $params = []): array
     {
@@ -24,7 +26,9 @@ class Timelines
     }
 
     /**
-     * @return Status[]
+     * @link https://docs.joinmastodon.org/methods/timelines/#home
+     * @param array $params
+     * @return array
      */
     public function home(array $params = []): array
     {
@@ -35,12 +39,29 @@ class Timelines
     }
 
     /**
-     * @return Status[]
+     * @link https://docs.joinmastodon.org/methods/timelines/#tag
+     * @param string $tag
+     * @param array $params
+     * @return array
      */
     public function tag(string $tag, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
             $this->maphpodon->get('v1/timelines/tag/' . $tag, ["query" => $params]),
+            new Status()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/timelines/#list
+     * @param string $id
+     * @param array $params
+     * @return array
+     */
+    public function list(string $id, array $params = []): array
+    {
+        return Mapper::mapJsonObjectToClassArray(
+            $this->maphpodon->get(sprintf('v1/timelines/list/%s', $id), ["query" => $params]),
             new Status()
         );
     }

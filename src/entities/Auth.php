@@ -45,7 +45,7 @@ class Auth
     {
         $params = ["json" => $params];
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post('oauth/token', $params),
+            $this->maphpodon->post('/oauth/token', $params),
             new Token()
         );
     }
@@ -58,6 +58,6 @@ class Auth
     public function revoke(array $params): void
     {
         $params = ["json" => $params];
-        $this->maphpodon->post('oauth/revoke', $params);
+        $this->maphpodon->post('/oauth/revoke', $params);
     }
 }

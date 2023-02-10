@@ -13,6 +13,11 @@ class Apps
     {
     }
 
+    /**
+     * @link https://docs.joinmastodon.org/methods/apps/#create
+     * @param array $params
+     * @return Model|Application
+     */
     public function post(array $params): Model|Application
     {
         $params = ["json" => $params];
@@ -22,6 +27,10 @@ class Apps
         );
     }
 
+    /**
+     * @link https://docs.joinmastodon.org/methods/apps/#verify_credentials
+     * @return Model|Application
+     */
     public function verify_credentials(): Model|Application
     {
         return Mapper::mapJsonObjectToClass(

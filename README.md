@@ -59,20 +59,16 @@ $result = $masto->accounts()->lists("109817168119540210", []);
 $result = $masto->accounts()->follow("109817168119540210");
 $result = $masto->accounts()->unfollow("109817168119540210");
 $result = $masto->accounts()->pin/unpin/block/unblock/...("109817168119540210");
+$result = $masto->accounts()->note("109817168119540210", ["comment" => "api test"]);
+$result = $masto->accounts()->note("109817168119540210"); // remove comment
 
 ####### Oauth token fetching
 
-// the maphpdon has /api in base_uri so we need to substitute the client with better base_uri
+// just put in a ID and secret
 $masto = new Maphpodon(
     "mastobotti.eu",
     "CLIENT_ID",
     "CLIENT_SECRET",
-    null,
-    null,
-    new \GuzzleHttp\Client([
-        'base_uri' => 'https://mastobotti.eu/',
-        'timeout' => 10,
-    ])
 );
 
 // this will return an url where to redirect customer

@@ -109,7 +109,7 @@ class Accounts
     public function follow(string $id, array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/follow', $id), $params),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/follow', $id), ["json" => $params]),
             new Relationship()
         );
     }
@@ -122,7 +122,7 @@ class Accounts
     public function unfollow(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/unfollow', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/unfollow', $id)),
             new Relationship()
         );
     }
@@ -135,7 +135,7 @@ class Accounts
     public function remove_from_followers(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/remove_from_followers', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/remove_from_followers', $id)),
             new Relationship()
         );
     }
@@ -148,7 +148,7 @@ class Accounts
     public function block(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/block', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/block', $id)),
             new Relationship()
         );
     }
@@ -161,7 +161,7 @@ class Accounts
     public function unblock(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/unblock', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/unblock', $id)),
             new Relationship()
         );
     }
@@ -172,10 +172,10 @@ class Accounts
      * @param array $params
      * @return Relationship
      */
-    public function mute(string $id, array $params = []): Model|Relationship
+    public function mute(string $id, ?array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/mute', $id), $params),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/mute', $id), ["json" => $params]),
             new Relationship()
         );
     }
@@ -188,7 +188,7 @@ class Accounts
     public function unmute(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/unmute', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/unmute', $id)),
             new Relationship()
         );
     }
@@ -201,7 +201,7 @@ class Accounts
     public function pin(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/pin', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/pin', $id)),
             new Relationship()
         );
     }
@@ -214,7 +214,33 @@ class Accounts
     public function unpin(string $id): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/unpin', $id), []),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/unpin', $id)),
+            new Relationship()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#note
+     * @param string $id
+     * @return Relationship
+     */
+    public function note(string $id, ?array $params = []): Model|Relationship
+    {
+        return Mapper::mapJsonObjectToClass(
+            $this->maphpodon->post(sprintf('v1/accounts/%s/note', $id), ["json" => $params]),
+            new Relationship()
+        );
+    }
+
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#relationships
+     * @param array $params
+     * @return Relationship[]
+     */
+    public function relationships(array $params = []): array
+    {
+        return Mapper::mapJsonObjectToClassArray(
+            $this->maphpodon->get('v1/accounts/relationships', ["query" => $params]),
             new Relationship()
         );
     }
