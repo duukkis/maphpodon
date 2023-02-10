@@ -1,7 +1,79 @@
 # Maphpodon
 
+PHP client-api for Mastodon. https://docs.joinmastodon.org/ has the api-methods documented. 
+All the entities functions have a link to corresponding documentation.
+Naming is done according the path. /api/v1/accounts is in entities/Accounts and /api/v1/accounts/follow is a follow function.
+Have not done any unit tests for this. That could be achieved by getting the jsons and faking the Guzzle Client passed into Maphpodon class.
 
-Methods
+## Instances
+
+Methods return either Model, array or just void.
+
+```
+class Accounts
+{
+    // takes in the Maphpodon wrapper with GuzzleClient
+    public function __construct(protected Maphpodon $maphpodon)
+    {
+    }
+    
+     /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#get
+     * @param string $id
+     * @return Account
+     */
+    public function get(string $id): Model|Account
+    {
+        return Mapper::mapJsonObjectToClass(
+            $this->maphpodon->get(sprintf('v1/accounts/%s', $id), []),
+            new Account()
+        );
+    }
+    
+    /**
+     * @link https://docs.joinmastodon.org/methods/accounts/#statuses
+     * @param string $id
+     * @param array $params
+     * @return Status[]
+     */
+    public function statuses(string $id, array $params = []): array
+    {
+        return Mapper::mapJsonObjectToClassArray(
+            $this->maphpodon->get(sprintf('v1/accounts/%s/statuses', $id), ["query" => $params]),
+            new Status()
+        );
+    }
+```
+
+## Models
+
+The returning objects are mapped in models.
+```
+class Status extends Model
+{
+    // not nullable
+    public string $id;
+    // Carbon::parse
+    public Carbon $created_at;
+    // can be null
+    public ?string $in_reply_to_id;
+    public bool $sensitive;
+    // this is mapped to Application model
+    public Application $application;
+    // check if we have mapper in $mapArrayToObjects and map array to those
+    public array $media_attachments = [];
+    // we have no mapper for this, just put json-objects to array
+    public array $emojis = [];
+    
+    public array $mapArrayToObjects = [
+        "media_attachments" => MediaAttachment::class,
+```
+## Exceptions
+
+Created Interface ExceptionCatcher that can be overwritten with any Catcher that handles the GuzzleException.
+For an example created DevelopmentExceptionCatcher into helpers dir.
+
+## Usage
 
 ```
 include('../vendor/autoload.php');
@@ -130,3 +202,5 @@ $result = $masto->apps()->post(
 $result = $masto->apps()->verify_credentials();
 
 ```
+
+## Have fun!
