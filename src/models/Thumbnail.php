@@ -2,8 +2,6 @@
 
 namespace Maphpodon\models;
 
-use Carbon\Carbon;
-
 class Thumbnail extends Model
 {
     public string $url;

@@ -188,7 +188,7 @@ class Accounts
 
 ## Models
 
-The returning objects are mapped in models.
+The returning objects are mapped into models.
 ```
 class Status extends Model
 {

@@ -5,6 +5,8 @@ namespace Maphpodon\helpers;
 use Carbon\Carbon;
 use InvalidArgumentException;
 use Maphpodon\models\Account;
+use Maphpodon\models\admin\AdminAccount;
+use Maphpodon\models\admin\AdminRole;
 use Maphpodon\models\Application;
 use Maphpodon\models\Configuration;
 use Maphpodon\models\Contact;
@@ -30,7 +32,7 @@ class Mapper
     {
         $result = [];
         foreach ($items as $i => $item) {
-            $entity = $model::build($item, $model);
+            $entity = $model::build($item, clone $model);
             array_push($result, $entity);
         }
         return $result;
@@ -50,6 +52,10 @@ class Mapper
     {
         $rp = new \ReflectionProperty($obj, $key);
         $type = $rp->getType()->getName();
+        if ($val == null) {
+            $obj->$key = null;
+            return $obj;
+        }
         switch ($type) {
             case "int":
                 $obj->$key = (int) $val;
@@ -119,6 +125,12 @@ class Mapper
                 break;
             case "Maphpodon\models\Thumbnail":
                 $obj->$key = Thumbnail::build($val, new Thumbnail());
+                break;
+            case "Maphpodon\models\admin\AdminAccount":
+                $obj->$key = AdminAccount::build($val, new AdminAccount());
+                break;
+            case "Maphpodon\models\admin\AdminRole":
+                $obj->$key = AdminRole::build($val, new AdminRole());
                 break;
             default:
                 throw new InvalidArgumentException($type . " is not mapped");

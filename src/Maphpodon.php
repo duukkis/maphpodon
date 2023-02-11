@@ -5,6 +5,7 @@ namespace Maphpodon;
 use Exception;
 use GuzzleHttp\Client;
 use Maphpodon\entities\Accounts;
+use Maphpodon\entities\Admin;
 use Maphpodon\entities\Apps;
 use Maphpodon\entities\Auth;
 use Maphpodon\entities\Instance;
@@ -163,5 +164,10 @@ class Maphpodon
     public function apps(): Apps
     {
         return new Apps($this);
+    }
+
+    public function admin(): Admin
+    {
+        return new Admin($this);
     }
 }
