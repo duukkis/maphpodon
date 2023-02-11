@@ -86,6 +86,26 @@ class Maphpodon
         }
     }
 
+    public function put(string $url, array $params = []): mixed
+    {
+        try {
+            $headers = [];
+            if ($this->authToken !== null) {
+                $headers["Authorization"] = "Bearer " . $this->authToken;
+            }
+            $response = $this->client->put(
+                $url,
+                [
+                    "json" => $params,
+                    "headers" => $headers
+                ]
+            );
+            return $this->parseJson($response->getBody()->getContents());
+        } catch (Exception $exception) {
+            $this->exceptionCatcher->handleException($exception);
+        }
+    }
+
     public function upload(string $url, array $params = []): mixed
     {
         try {

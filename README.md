@@ -149,6 +149,9 @@ $result = $masto->admin()->accounts()->view("109807491887075545");
 $result = $masto->admin()->accounts()->approve("109807491887075545");
 $masto->admin()->accounts()->action("109807491887075545", ["type" => "none"]);
 // reject, delete, enable, unsilence, unsuspend, unsensitive
+
+$result = $masto->admin()->domain_blocks()->list([]);
+// ...
 ```
 
 # Structure of code
