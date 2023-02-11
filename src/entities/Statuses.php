@@ -48,7 +48,7 @@ class Statuses
     public function delete(string $id): Model|Status
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->delete(sprintf('v1/statuses/%s', $id), []),
+            $this->maphpodon->delete(sprintf('v1/statuses/%s', $id)),
             new Status()
         );
     }

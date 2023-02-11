@@ -11,7 +11,8 @@ class Admin
     {
     }
 
-    public function accounts(){
+    public function accounts(): Accounts
+    {
         return new Accounts($this->maphpodon);
     }
 }

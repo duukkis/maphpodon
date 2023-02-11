@@ -142,6 +142,13 @@ $result = $masto->apps()->post(
 );
 $result = $masto->apps()->verify_credentials();
 
+####### Admin
+$result = $masto->admin()->accounts()->viewV1(["limit" => 2]);
+$result = $masto->admin()->accounts()->viewV2(["status" => "active", "limit" => 2]);
+$result = $masto->admin()->accounts()->view("109807491887075545");
+$result = $masto->admin()->accounts()->approve("109807491887075545");
+$masto->admin()->accounts()->action("109807491887075545", ["type" => "none"]);
+// reject, delete, enable, unsilence, unsuspend, unsensitive
 ```
 
 # Structure of code

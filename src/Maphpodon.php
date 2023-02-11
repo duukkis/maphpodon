@@ -73,11 +73,13 @@ class Maphpodon
             }
             // forget this for now
             // $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . );
-            $response = $this->client->post($url,
+            $response = $this->client->post(
+                $url,
                 [
                     "json" => $params,
                     "headers" => $headers
-                ]);
+                ]
+            );
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
@@ -100,7 +102,7 @@ class Maphpodon
         }
     }
 
-    public function delete(string $url, array $params = []): mixed
+    public function delete(string $url): mixed
     {
         try {
             $headers = [];
