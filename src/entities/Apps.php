@@ -20,7 +20,6 @@ class Apps
      */
     public function post(array $params): Model|Application
     {
-        $params = ["json" => $params];
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post('v1/apps', $params),
             new Application()

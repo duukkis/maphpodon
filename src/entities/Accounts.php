@@ -40,7 +40,7 @@ class Accounts
     public function statuses(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/accounts/%s/statuses', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/accounts/%s/statuses', $id), $params),
             new Status()
         );
     }
@@ -54,7 +54,7 @@ class Accounts
     public function followers(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/accounts/%s/followers', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/accounts/%s/followers', $id), $params),
             new Account()
         );
     }
@@ -68,7 +68,7 @@ class Accounts
     public function following(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/accounts/%s/following', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/accounts/%s/following', $id), $params),
             new Account()
         );
     }
@@ -82,7 +82,7 @@ class Accounts
     public function featured_tags(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/accounts/%s/featured_tags', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/accounts/%s/featured_tags', $id), $params),
             new FeatureTag()
         );
     }
@@ -96,7 +96,7 @@ class Accounts
     public function lists(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/accounts/%s/lists', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/accounts/%s/lists', $id), $params),
             new MList()
         );
     }
@@ -110,7 +110,7 @@ class Accounts
     public function follow(string $id, array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/follow', $id), ["json" => $params]),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/follow', $id), $params),
             new Relationship()
         );
     }
@@ -176,7 +176,7 @@ class Accounts
     public function mute(string $id, ?array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/mute', $id), ["json" => $params]),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/mute', $id), $params),
             new Relationship()
         );
     }
@@ -228,7 +228,7 @@ class Accounts
     public function note(string $id, ?array $params = []): Model|Relationship
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->post(sprintf('v1/accounts/%s/note', $id), ["json" => $params]),
+            $this->maphpodon->post(sprintf('v1/accounts/%s/note', $id), $params),
             new Relationship()
         );
     }
@@ -241,7 +241,7 @@ class Accounts
     public function relationships(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/accounts/relationships', ["query" => $params]),
+            $this->maphpodon->get('v1/accounts/relationships', $params),
             new Relationship()
         );
     }
@@ -254,7 +254,7 @@ class Accounts
     public function familiar_followers(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/accounts/familiar_followers', ["query" => $params]),
+            $this->maphpodon->get('v1/accounts/familiar_followers', $params),
             new FamiliarFollowers()
         );
     }
@@ -267,7 +267,7 @@ class Accounts
     public function search(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/accounts/search', ["query" => $params]),
+            $this->maphpodon->get('v1/accounts/search', $params),
             new Account()
         );
     }
@@ -280,7 +280,7 @@ class Accounts
     public function lookup(array $params = []): Model|Account
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->get('v1/accounts/lookup', ["query" => $params]),
+            $this->maphpodon->get('v1/accounts/lookup', $params),
             new Account()
         );
     }

@@ -20,7 +20,7 @@ class Timelines
     public function public(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/timelines/public', ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/public', $params),
             new Status()
         );
     }
@@ -33,7 +33,7 @@ class Timelines
     public function home(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/timelines/home', ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/home', $params),
             new Status()
         );
     }
@@ -47,7 +47,7 @@ class Timelines
     public function tag(string $tag, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/timelines/tag/' . $tag, ["query" => $params]),
+            $this->maphpodon->get('v1/timelines/tag/' . $tag, $params),
             new Status()
         );
     }
@@ -61,7 +61,7 @@ class Timelines
     public function list(string $id, array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get(sprintf('v1/timelines/list/%s', $id), ["query" => $params]),
+            $this->maphpodon->get(sprintf('v1/timelines/list/%s', $id), $params),
             new Status()
         );
     }

@@ -50,8 +50,13 @@ class Maphpodon
             if ($this->authToken !== null) {
                 $headers["Authorization"] = "Bearer " . $this->authToken;
             }
-            $params["headers"] = $headers;
-            $response = $this->client->get($url, $params);
+            $response = $this->client->get(
+                $url,
+                [
+                    "query" => $params,
+                    "headers" => $headers
+                ]
+            );
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
@@ -67,8 +72,11 @@ class Maphpodon
             }
             // forget this for now
             // $headers["Idempotency-Key"] =  hash("sha512", $this->authToken . ";" . $url  . ";" . );
-            $params["headers"] = $headers;
-            $response = $this->client->post($url, $params);
+            $response = $this->client->post($url,
+                [
+                    "json" => $params,
+                    "headers" => $headers
+                ]);
             return $this->parseJson($response->getBody()->getContents());
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);

@@ -21,7 +21,7 @@ class Search
     public function get(array $params): Model|SearchResult
     {
         return Mapper::mapJsonObjectToClass(
-            $this->maphpodon->get('v2/search', ["query" => $params]),
+            $this->maphpodon->get('v2/search', $params),
             new SearchResult()
         );
     }

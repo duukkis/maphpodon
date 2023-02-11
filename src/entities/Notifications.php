@@ -21,7 +21,7 @@ class Notifications
     public function index(array $params = []): array
     {
         return Mapper::mapJsonObjectToClassArray(
-            $this->maphpodon->get('v1/notifications', ["query" => $params]),
+            $this->maphpodon->get('v1/notifications', $params),
             new Notification()
         );
     }

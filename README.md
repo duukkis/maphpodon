@@ -24,6 +24,12 @@ $masto = new Maphpodon(
 
 ####### Timelines
 $result = $masto->timelines()->public(["limit" => 10]);
+/** @var \Maphpodon\models\Status $status */
+foreach ($result as $i => $status) {
+    print "User " . $status->account->username . 
+    " posted at " . $status->created_at->format("Y-m-d. H:i") . 
+    " this " .$status->content . PHP_EOL;
+}
 $result = $masto->timelines()->home(["limit" => 2]);
 $result = $masto->timelines()->tag("fish");
 

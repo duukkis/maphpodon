@@ -21,7 +21,6 @@ class Statuses
      */
     public function post(array $params = []): Model|Status
     {
-        $params = ["json" => $params];
         return Mapper::mapJsonObjectToClass(
             $this->maphpodon->post('v1/statuses', $params),
             new Status()
