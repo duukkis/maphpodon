@@ -4,6 +4,7 @@ namespace Maphpodon\entities;
 
 use Maphpodon\entities\admin\Accounts;
 use Maphpodon\entities\admin\DomainBlocks;
+use Maphpodon\entities\admin\Reports;
 use Maphpodon\Maphpodon;
 
 class Admin
@@ -20,5 +21,10 @@ class Admin
     public function domain_blocks(): DomainBlocks
     {
         return new DomainBlocks($this->maphpodon);
+    }
+
+    public function reports(): Reports
+    {
+        return new Reports($this->maphpodon);
     }
 }
