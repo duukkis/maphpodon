@@ -50,12 +50,12 @@ class Mapper
 
     private static function mapItem(Model $obj, $key, $val): Model
     {
-        $rp = new \ReflectionProperty($obj, $key);
-        $type = $rp->getType()->getName();
-        if ($val == null) {
-            $obj->$key = null;
+        // json contains object that is not mapped
+        if (!property_exists($obj, $key)) {
             return $obj;
         }
+        $rp = new \ReflectionProperty($obj, $key);
+        $type = $rp->getType()->getName();
         switch ($type) {
             case "int":
                 $obj->$key = (int) $val;
@@ -87,53 +87,61 @@ class Mapper
                     $obj->$key = $arr;
                 }
                 break;
-            case "Maphpodon\models\Account":
-                $obj->$key = Account::build($val, new Account());
-                break;
-            case "Maphpodon\models\Application":
-                $obj->$key = Application::build($val, new Application());
-                break;
-            case "Maphpodon\models\Configuration":
-                $obj->$key = Configuration::build($val, new Configuration());
-                break;
-            case "Maphpodon\models\Contact":
-                $obj->$key = Contact::build($val, new Contact());
-                break;
-            case "Maphpodon\models\FeatureTag":
-                $obj->$key = FeatureTag::build($val, new FeatureTag());
-                break;
-            case "Maphpodon\models\Field":
-                $obj->$key = Field::build($val, new Field());
-                break;
-            case "Maphpodon\models\MediaAttachment":
-                $obj->$key = MediaAttachment::build($val, new MediaAttachment());
-                break;
-            case "Maphpodon\models\Mention":
-                $obj->$key = Mention::build($val, new Mention());
-                break;
-            case "Maphpodon\models\MList":
-                $obj->$key = MList::build($val, new MList());
-                break;
-            case "Maphpodon\models\Rule":
-                $obj->$key = Rule::build($val, new Rule());
-                break;
-            case "Maphpodon\models\Status":
-                $obj->$key = Status::build($val, new Status());
-                break;
-            case "Maphpodon\models\Tag":
-                $obj->$key = Tag::build($val, new Tag());
-                break;
-            case "Maphpodon\models\Thumbnail":
-                $obj->$key = Thumbnail::build($val, new Thumbnail());
-                break;
-            case "Maphpodon\models\admin\AdminAccount":
-                $obj->$key = AdminAccount::build($val, new AdminAccount());
-                break;
-            case "Maphpodon\models\admin\AdminRole":
-                $obj->$key = AdminRole::build($val, new AdminRole());
-                break;
             default:
-                throw new InvalidArgumentException($type . " is not mapped");
+                if ($val == null){
+                    $obj->$key = $val;
+                    return $obj;
+                }
+                switch ($type) {
+                    case "Maphpodon\models\Account":
+                        $obj->$key = Account::build($val, new Account());
+                        break;
+                    case "Maphpodon\models\Application":
+                        $obj->$key = Application::build($val, new Application());
+                        break;
+                    case "Maphpodon\models\Configuration":
+                        $obj->$key = Configuration::build($val, new Configuration());
+                        break;
+                    case "Maphpodon\models\Contact":
+                        $obj->$key = Contact::build($val, new Contact());
+                        break;
+                    case "Maphpodon\models\FeatureTag":
+                        $obj->$key = FeatureTag::build($val, new FeatureTag());
+                        break;
+                    case "Maphpodon\models\Field":
+                        $obj->$key = Field::build($val, new Field());
+                        break;
+                    case "Maphpodon\models\MediaAttachment":
+                        $obj->$key = MediaAttachment::build($val, new MediaAttachment());
+                        break;
+                    case "Maphpodon\models\Mention":
+                        $obj->$key = Mention::build($val, new Mention());
+                        break;
+                    case "Maphpodon\models\MList":
+                        $obj->$key = MList::build($val, new MList());
+                        break;
+                    case "Maphpodon\models\Rule":
+                        $obj->$key = Rule::build($val, new Rule());
+                        break;
+                    case "Maphpodon\models\Status":
+                        $obj->$key = Status::build($val, new Status());
+                        break;
+                    case "Maphpodon\models\Tag":
+                        $obj->$key = Tag::build($val, new Tag());
+                        break;
+                    case "Maphpodon\models\Thumbnail":
+                        $obj->$key = Thumbnail::build($val, new Thumbnail());
+                        break;
+                    case "Maphpodon\models\admin\AdminAccount":
+                        $obj->$key = AdminAccount::build($val, new AdminAccount());
+                        break;
+                    case "Maphpodon\models\admin\AdminRole":
+                        $obj->$key = AdminRole::build($val, new AdminRole());
+                        break;
+                    default:
+                        throw new InvalidArgumentException($type . " is not mapped");
+                }
+                break;
         }
         return $obj;
     }
