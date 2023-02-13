@@ -3,11 +3,11 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
+use Maphpodon\Maphpodon;
 use Maphpodon\models\Account;
 use Maphpodon\models\Context;
 use Maphpodon\models\Model;
 use Maphpodon\models\Status;
-use Maphpodon\Maphpodon;
 use Maphpodon\models\StatusEdit;
 use Maphpodon\models\StatusSource;
 use Maphpodon\models\Translation;

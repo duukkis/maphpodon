@@ -3,9 +3,9 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
+use Maphpodon\Maphpodon;
 use Maphpodon\models\Model;
 use Maphpodon\models\Notification;
-use Maphpodon\Maphpodon;
 
 class Notifications
 {

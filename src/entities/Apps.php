@@ -3,8 +3,8 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\models\Application;
 use Maphpodon\Maphpodon;
+use Maphpodon\models\Application;
 use Maphpodon\models\Model;
 
 class Apps

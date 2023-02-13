@@ -3,8 +3,8 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\helpers\Mapper;
-use Maphpodon\models\MediaAttachment;
 use Maphpodon\Maphpodon;
+use Maphpodon\models\MediaAttachment;
 use Maphpodon\models\Model;
 
 class Media
