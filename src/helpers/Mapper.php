@@ -7,15 +7,18 @@ use InvalidArgumentException;
 use Maphpodon\models\Account;
 use Maphpodon\models\admin\AdminAccount;
 use Maphpodon\models\admin\AdminCanonicalEmailBlock;
+use Maphpodon\models\admin\AdminCohort;
 use Maphpodon\models\admin\AdminDomainAllow;
 use Maphpodon\models\admin\AdminDomainBlock;
 use Maphpodon\models\admin\AdminIpBlock;
 use Maphpodon\models\admin\AdminKey;
+use Maphpodon\models\admin\AdminMeasure;
 use Maphpodon\models\admin\AdminReport;
 use Maphpodon\models\admin\AdminRole;
 use Maphpodon\models\Application;
 use Maphpodon\models\Configuration;
 use Maphpodon\models\Contact;
+use Maphpodon\models\Context;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\Field;
 use Maphpodon\models\History;
@@ -30,9 +33,12 @@ use Maphpodon\models\Relationship;
 use Maphpodon\models\Rule;
 use Maphpodon\models\SearchResult;
 use Maphpodon\models\Status;
+use Maphpodon\models\StatusEdit;
+use Maphpodon\models\StatusSource;
 use Maphpodon\models\Tag;
 use Maphpodon\models\Thumbnail;
 use Maphpodon\models\Token;
+use Maphpodon\models\Translation;
 
 class Mapper
 {
@@ -118,6 +124,9 @@ class Mapper
                     case "Maphpodon\models\Contact":
                         $obj->$key = Contact::build($val, new Contact());
                         break;
+                    case "Maphpodon\models\Context":
+                        $obj->$key = Context::build($val, new Context());
+                        break;
                     case "Maphpodon\models\FeatureTag":
                         $obj->$key = FeatureTag::build($val, new FeatureTag());
                         break;
@@ -157,6 +166,12 @@ class Mapper
                     case "Maphpodon\models\Status":
                         $obj->$key = Status::build($val, new Status());
                         break;
+                    case "Maphpodon\models\StatusEdit":
+                        $obj->$key = StatusEdit::build($val, new Status());
+                        break;
+                    case "Maphpodon\models\StatusSource":
+                        $obj->$key = StatusSource::build($val, new Status());
+                        break;
                     case "Maphpodon\models\Tag":
                         $obj->$key = Tag::build($val, new Tag());
                         break;
@@ -166,12 +181,18 @@ class Mapper
                     case "Maphpodon\models\Token":
                         $obj->$key = Token::build($val, new Token());
                         break;
+                    case "Maphpodon\models\Translation":
+                        $obj->$key = Translation::build($val, new Translation());
+                        break;
                     //----------------------------------------- admin items
                     case "Maphpodon\models\admin\AdminAccount":
                         $obj->$key = AdminAccount::build($val, new AdminAccount());
                         break;
                     case "Maphpodon\models\admin\AdminCanonicalEmailBlock":
                         $obj->$key = AdminCanonicalEmailBlock::build($val, new AdminCanonicalEmailBlock());
+                        break;
+                    case "Maphpodon\models\admin\AdminCohort":
+                        $obj->$key = AdminCohort::build($val, new AdminCohort());
                         break;
                     case "Maphpodon\models\admin\AdminDomainAllow":
                         $obj->$key = AdminDomainAllow::build($val, new AdminDomainAllow());
@@ -184,6 +205,9 @@ class Mapper
                         break;
                     case "Maphpodon\models\admin\AdminKey":
                         $obj->$key = AdminKey::build($val, new AdminKey());
+                        break;
+                    case "Maphpodon\models\admin\AdminMeasure":
+                        $obj->$key = AdminMeasure::build($val, new AdminMeasure());
                         break;
                     case "Maphpodon\models\admin\AdminReport":
                         $obj->$key = AdminReport::build($val, new AdminReport());

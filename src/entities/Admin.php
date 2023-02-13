@@ -8,7 +8,9 @@ use Maphpodon\entities\admin\Dimensions;
 use Maphpodon\entities\admin\DomainAllows;
 use Maphpodon\entities\admin\DomainBlocks;
 use Maphpodon\entities\admin\IpBlocks;
+use Maphpodon\entities\admin\Measures;
 use Maphpodon\entities\admin\Reports;
+use Maphpodon\entities\admin\Retention;
 use Maphpodon\entities\admin\Trends;
 use Maphpodon\Maphpodon;
 
@@ -56,5 +58,15 @@ class Admin
     public function ip_blocks(): IpBlocks
     {
         return new IpBlocks($this->maphpodon);
+    }
+
+    public function measures(): Measures
+    {
+        return new Measures($this->maphpodon);
+    }
+
+    public function retention(): Retention
+    {
+        return new Retention($this->maphpodon);
     }
 }

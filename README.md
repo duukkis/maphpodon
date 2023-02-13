@@ -171,6 +171,13 @@ $result = $masto->admin()->trends()->tags([]);
 
 $result = $masto->admin()->canonical_email_blocks()->list();
 $result = $masto->admin()->dimensions()->list(["keys" => ["languages", "sources", "servers", "space_usage", "software_versions"]]);
+$result = $masto->admin()->measures()->list(
+    [
+        "keys" => ["active_users", "new_users"],
+        "start_at" => \Carbon\Carbon::now()->subMonth()->format("Y-m-d"),
+        "end_at" => \Carbon\Carbon::now()->format("Y-m-d"),
+    ]
+);
 
 ```
 
