@@ -3,8 +3,13 @@
 namespace Maphpodon\entities;
 
 use Maphpodon\entities\admin\Accounts;
+use Maphpodon\entities\admin\CanonicalEmailBlocks;
+use Maphpodon\entities\admin\Dimensions;
+use Maphpodon\entities\admin\DomainAllows;
 use Maphpodon\entities\admin\DomainBlocks;
+use Maphpodon\entities\admin\IpBlocks;
 use Maphpodon\entities\admin\Reports;
+use Maphpodon\entities\admin\Trends;
 use Maphpodon\Maphpodon;
 
 class Admin
@@ -23,8 +28,33 @@ class Admin
         return new DomainBlocks($this->maphpodon);
     }
 
+    public function domain_allows(): DomainAllows
+    {
+        return new DomainAllows($this->maphpodon);
+    }
+
     public function reports(): Reports
     {
         return new Reports($this->maphpodon);
+    }
+
+    public function trends(): Trends
+    {
+        return new Trends($this->maphpodon);
+    }
+
+    public function canonical_email_blocks(): CanonicalEmailBlocks
+    {
+        return new CanonicalEmailBlocks($this->maphpodon);
+    }
+
+    public function dimensions(): Dimensions
+    {
+        return new Dimensions($this->maphpodon);
+    }
+
+    public function ip_blocks(): IpBlocks
+    {
+        return new IpBlocks($this->maphpodon);
     }
 }

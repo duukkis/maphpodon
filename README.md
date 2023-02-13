@@ -150,8 +150,28 @@ $result = $masto->admin()->accounts()->approve("109807491887075545");
 $masto->admin()->accounts()->action("109807491887075545", ["type" => "none"]);
 // reject, delete, enable, unsilence, unsuspend, unsensitive
 
+$result = $masto->admin()->domain_allows()->list([]);
 $result = $masto->admin()->domain_blocks()->list([]);
-// ...
+$result = $masto->admin()->ip_blocks()->list();
+$result = $masto->admin()->ip_blocks()->view("1");
+$result = $masto->admin()->ip_blocks()->create(["..."]);
+$result = $masto->admin()->ip_blocks()->update("1", ["..."]);
+$masto->admin()->ip_blocks()->delete("1");
+
+$result = $masto->admin()->reports()->list([]);
+$result = $masto->admin()->reports()->view("2");
+$result = $masto->admin()->reports()->assign_to_self("2");
+$result = $masto->admin()->reports()->unassign("2");
+$result = $masto->admin()->reports()->resolve("2");
+$result = $masto->admin()->reports()->reopen("2");
+
+$result = $masto->admin()->trends()->statuses([]);
+$result = $masto->admin()->trends()->links([]);
+$result = $masto->admin()->trends()->tags([]);
+
+$result = $masto->admin()->canonical_email_blocks()->list();
+$result = $masto->admin()->dimensions()->list(["keys" => ["languages", "sources", "servers", "space_usage", "software_versions"]]);
+
 ```
 
 # Structure of code

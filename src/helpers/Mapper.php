@@ -6,20 +6,33 @@ use Carbon\Carbon;
 use InvalidArgumentException;
 use Maphpodon\models\Account;
 use Maphpodon\models\admin\AdminAccount;
+use Maphpodon\models\admin\AdminCanonicalEmailBlock;
+use Maphpodon\models\admin\AdminDomainAllow;
+use Maphpodon\models\admin\AdminDomainBlock;
+use Maphpodon\models\admin\AdminIpBlock;
+use Maphpodon\models\admin\AdminKey;
+use Maphpodon\models\admin\AdminReport;
 use Maphpodon\models\admin\AdminRole;
 use Maphpodon\models\Application;
 use Maphpodon\models\Configuration;
 use Maphpodon\models\Contact;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\Field;
+use Maphpodon\models\History;
+use Maphpodon\models\Instance;
+use Maphpodon\models\Link;
 use Maphpodon\models\MediaAttachment;
 use Maphpodon\models\Mention;
 use Maphpodon\models\MList;
 use Maphpodon\models\Model;
+use Maphpodon\models\Notification;
+use Maphpodon\models\Relationship;
 use Maphpodon\models\Rule;
+use Maphpodon\models\SearchResult;
 use Maphpodon\models\Status;
 use Maphpodon\models\Tag;
 use Maphpodon\models\Thumbnail;
+use Maphpodon\models\Token;
 
 class Mapper
 {
@@ -88,7 +101,7 @@ class Mapper
                 }
                 break;
             default:
-                if ($val == null){
+                if ($val == null) {
                     $obj->$key = $val;
                     return $obj;
                 }
@@ -111,6 +124,15 @@ class Mapper
                     case "Maphpodon\models\Field":
                         $obj->$key = Field::build($val, new Field());
                         break;
+                    case "Maphpodon\models\History":
+                        $obj->$key = History::build($val, new History());
+                        break;
+                    case "Maphpodon\models\Instance":
+                        $obj->$key = Instance::build($val, new Instance());
+                        break;
+                    case "Maphpodon\models\Link":
+                        $obj->$key = Link::build($val, new Link());
+                        break;
                     case "Maphpodon\models\MediaAttachment":
                         $obj->$key = MediaAttachment::build($val, new MediaAttachment());
                         break;
@@ -120,8 +142,17 @@ class Mapper
                     case "Maphpodon\models\MList":
                         $obj->$key = MList::build($val, new MList());
                         break;
+                    case "Maphpodon\models\Notification":
+                        $obj->$key = Notification::build($val, new Notification());
+                        break;
+                    case "Maphpodon\models\Relationship":
+                        $obj->$key = Relationship::build($val, new Relationship());
+                        break;
                     case "Maphpodon\models\Rule":
                         $obj->$key = Rule::build($val, new Rule());
+                        break;
+                    case "Maphpodon\models\SearchResult":
+                        $obj->$key = SearchResult::build($val, new SearchResult());
                         break;
                     case "Maphpodon\models\Status":
                         $obj->$key = Status::build($val, new Status());
@@ -132,8 +163,30 @@ class Mapper
                     case "Maphpodon\models\Thumbnail":
                         $obj->$key = Thumbnail::build($val, new Thumbnail());
                         break;
+                    case "Maphpodon\models\Token":
+                        $obj->$key = Token::build($val, new Token());
+                        break;
+                    //----------------------------------------- admin items
                     case "Maphpodon\models\admin\AdminAccount":
                         $obj->$key = AdminAccount::build($val, new AdminAccount());
+                        break;
+                    case "Maphpodon\models\admin\AdminCanonicalEmailBlock":
+                        $obj->$key = AdminCanonicalEmailBlock::build($val, new AdminCanonicalEmailBlock());
+                        break;
+                    case "Maphpodon\models\admin\AdminDomainAllow":
+                        $obj->$key = AdminDomainAllow::build($val, new AdminDomainAllow());
+                        break;
+                    case "Maphpodon\models\admin\AdminDomainBlock":
+                        $obj->$key = AdminDomainBlock::build($val, new AdminDomainBlock());
+                        break;
+                    case "Maphpodon\models\admin\AdminIpBlock":
+                        $obj->$key = AdminIpBlock::build($val, new AdminIpBlock());
+                        break;
+                    case "Maphpodon\models\admin\AdminKey":
+                        $obj->$key = AdminKey::build($val, new AdminKey());
+                        break;
+                    case "Maphpodon\models\admin\AdminReport":
+                        $obj->$key = AdminReport::build($val, new AdminReport());
                         break;
                     case "Maphpodon\models\admin\AdminRole":
                         $obj->$key = AdminRole::build($val, new AdminRole());
