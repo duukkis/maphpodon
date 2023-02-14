@@ -41,6 +41,23 @@ $result = $masto->statuses()->delete("109823185566762882");
 $result = $masto->statuses()->reblogged_by("109825461095585733");
 $result = $masto->statuses()->favourited_by("109825461095585733");
 
+####### Poll
+$result = $masto->statuses()->post(
+    [
+        "status" => "What is the best way to make a poll?",
+        "poll" => [
+            "options" => [
+                "This way",
+                "Some other way"
+            ],
+            "expires_in" => 60 * 60,
+            "multiple" => false,
+        ]
+    ]
+);
+$result = $masto->polls()->get("5");
+$result = $masto->polls()->vote("5", ["choices" => [0, 1]]);
+
 ####### Remote status favourite
 // find a remote post, use resolve true! so it gets federated to local instance
 $result = $masto->search()->get(["q" => "https://mas.to/@duukkis/109818862518591984", "resolve" => true]);
