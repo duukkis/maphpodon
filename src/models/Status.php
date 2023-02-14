@@ -29,7 +29,7 @@ class Status extends Model
     public array $tags = [];
     public array $emojis = [];
     public ?string $card;
-    public ?string $poll;
+    public ?Poll $poll;
 
     public array $mapArrayToObjects = [
         "media_attachments" => MediaAttachment::class,

@@ -11,9 +11,11 @@ use Maphpodon\entities\Auth;
 use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
+use Maphpodon\entities\Polls;
 use Maphpodon\entities\Search;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
+use Maphpodon\helpers\Debugger;
 use Maphpodon\helpers\ExceptionCatcher;
 use Maphpodon\helpers\MaphpodonExceptionCatcher;
 
@@ -21,6 +23,7 @@ class Maphpodon
 {
     protected Client $client;
     protected ExceptionCatcher $exceptionCatcher;
+    protected ?Debugger $debugger;
 
     public function __construct(
         protected string $domain,
@@ -29,14 +32,16 @@ class Maphpodon
         public ?string $authToken = null,
         ExceptionCatcher $exceptionCatcher = null,
         ?Client $client = null,
+        ?Debugger $debugger = null,
     ) {
+        $this->exceptionCatcher = $exceptionCatcher ?? new MaphpodonExceptionCatcher();
         $this->client = $client ?? new Client(
             [
                 'base_uri' => 'https://' . $domain . '/api/',
                 'timeout' => 10,
             ]
         );
-        $this->exceptionCatcher = $exceptionCatcher ?? new MaphpodonExceptionCatcher();
+        $this->debugger = $debugger;
     }
 
     public function getDomain(): string
@@ -58,7 +63,7 @@ class Maphpodon
                     "headers" => $headers
                 ]
             );
-            return $this->parseJson($response->getBody()->getContents());
+            return $this->parseJson($response->getBody()->getContents(), "get", $url, $params);
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
         }
@@ -80,7 +85,7 @@ class Maphpodon
                     "headers" => $headers
                 ]
             );
-            return $this->parseJson($response->getBody()->getContents());
+            return $this->parseJson($response->getBody()->getContents(), "post", $url, $params);
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
         }
@@ -100,7 +105,7 @@ class Maphpodon
                     "headers" => $headers
                 ]
             );
-            return $this->parseJson($response->getBody()->getContents());
+            return $this->parseJson($response->getBody()->getContents(), "put", $url, $params);
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
         }
@@ -115,7 +120,7 @@ class Maphpodon
             }
             $params["headers"] = $headers;
             $response = $this->client->post($url, $params);
-            $x = $this->parseJson($response->getBody()->getContents());
+            $x = $this->parseJson($response->getBody()->getContents(), "upload", $url, $params);
             return $x;
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
@@ -131,14 +136,17 @@ class Maphpodon
             }
             $params["headers"] = $headers;
             $response = $this->client->delete($url, $params);
-            return $this->parseJson($response->getBody()->getContents());
+            return $this->parseJson($response->getBody()->getContents(), "delete", $url, $params);
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
         }
     }
 
-    private function parseJson(string $contents): mixed
+    private function parseJson(string $contents, string $method = null, string $url = null, array $params = []): mixed
     {
+        if ($this->debugger !== null) {
+            $this->debugger->debug($method, $url, $params, $contents);
+        }
         return \Safe\json_decode($contents);
     }
 
@@ -191,5 +199,10 @@ class Maphpodon
     public function admin(): Admin
     {
         return new Admin($this);
+    }
+
+    public function polls(): Polls
+    {
+        return new Polls($this);
     }
 }

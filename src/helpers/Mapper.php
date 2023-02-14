@@ -29,6 +29,8 @@ use Maphpodon\models\Mention;
 use Maphpodon\models\MList;
 use Maphpodon\models\Model;
 use Maphpodon\models\Notification;
+use Maphpodon\models\Poll;
+use Maphpodon\models\PollOption;
 use Maphpodon\models\Relationship;
 use Maphpodon\models\Rule;
 use Maphpodon\models\SearchResult;
@@ -153,6 +155,12 @@ class Mapper
                         break;
                     case "Maphpodon\models\Notification":
                         $obj->$key = Notification::build($val, new Notification());
+                        break;
+                    case "Maphpodon\models\Poll":
+                        $obj->$key = Poll::build($val, new Poll());
+                        break;
+                    case "Maphpodon\models\PollOption":
+                        $obj->$key = PollOption::build($val, new PollOption());
                         break;
                     case "Maphpodon\models\Relationship":
                         $obj->$key = Relationship::build($val, new Relationship());
