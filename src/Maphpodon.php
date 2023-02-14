@@ -11,6 +11,7 @@ use Maphpodon\entities\Auth;
 use Maphpodon\entities\Instance;
 use Maphpodon\entities\Media;
 use Maphpodon\entities\Notifications;
+use Maphpodon\entities\Polls;
 use Maphpodon\entities\Search;
 use Maphpodon\entities\Statuses;
 use Maphpodon\entities\Timelines;
@@ -198,5 +199,10 @@ class Maphpodon
     public function admin(): Admin
     {
         return new Admin($this);
+    }
+
+    public function polls(): Polls
+    {
+        return new Polls($this);
     }
 }
