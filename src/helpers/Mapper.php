@@ -16,6 +16,7 @@ use Maphpodon\models\admin\AdminMeasure;
 use Maphpodon\models\admin\AdminReport;
 use Maphpodon\models\admin\AdminRole;
 use Maphpodon\models\Application;
+use Maphpodon\models\Card;
 use Maphpodon\models\Configuration;
 use Maphpodon\models\Contact;
 use Maphpodon\models\Context;
@@ -119,6 +120,9 @@ class Mapper
                         break;
                     case "Maphpodon\models\Application":
                         $obj->$key = Application::build($val, new Application());
+                        break;
+                    case "Maphpodon\models\Card":
+                        $obj->$key = Card::build($val, new Card());
                         break;
                     case "Maphpodon\models\Configuration":
                         $obj->$key = Configuration::build($val, new Configuration());
