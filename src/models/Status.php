@@ -28,7 +28,7 @@ class Status extends Model
     public array $mentions = [];
     public array $tags = [];
     public array $emojis = [];
-    public ?string $card;
+    public ?Card $card;
     public ?Poll $poll;
 
     public array $mapArrayToObjects = [
