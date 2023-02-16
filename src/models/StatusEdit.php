@@ -12,9 +12,10 @@ class StatusEdit extends Model
     public Carbon $created_at;
     public Account $account;
     public array $media_attachments = [];
-    public array $emojis = [];
+    public ?array $emojis = [];
 
     public array $mapArrayToObjects = [
+        "emojis" => Emoji::class,
         "media_attachments" => MediaAttachment::class,
     ];
 }
