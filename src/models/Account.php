@@ -26,6 +26,10 @@ class Account extends Model
     public ?int $statuses_count;
     public ?Carbon $last_status_at;
     public ?bool $noindex;
-    public ?array $emojis;
-    public ?array $fields;
+    public array $emojis = [];
+    public ?array $fields = [];
+
+    public array $mapArrayToObjects = [
+        "emojis" => Emoji::class,
+    ];
 }

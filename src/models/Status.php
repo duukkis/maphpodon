@@ -32,6 +32,7 @@ class Status extends Model
     public ?Poll $poll;
 
     public array $mapArrayToObjects = [
+        "emojis" => Emoji::class,
         "media_attachments" => MediaAttachment::class,
         "mentions" => Mention::class,
         "tags" => Tag::class,

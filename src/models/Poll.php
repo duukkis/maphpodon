@@ -19,5 +19,6 @@ class Poll extends Model
 
     public array $mapArrayToObjects = [
         "options" => PollOption::class,
+        "emojis" => Emoji::class,
     ];
 }

@@ -20,6 +20,7 @@ use Maphpodon\models\Card;
 use Maphpodon\models\Configuration;
 use Maphpodon\models\Contact;
 use Maphpodon\models\Context;
+use Maphpodon\models\Emoji;
 use Maphpodon\models\FeatureTag;
 use Maphpodon\models\Field;
 use Maphpodon\models\History;
@@ -132,6 +133,9 @@ class Mapper
                         break;
                     case "Maphpodon\models\Context":
                         $obj->$key = Context::build($val, new Context());
+                        break;
+                    case "Maphpodon\models\Emoji":
+                        $obj->$key = Emoji::build($val, new Emoji());
                         break;
                     case "Maphpodon\models\FeatureTag":
                         $obj->$key = FeatureTag::build($val, new FeatureTag());
