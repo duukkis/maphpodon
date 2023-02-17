@@ -20,6 +20,11 @@ class Status extends Model
     public int $reblogs_count;
     public int $favourites_count;
     public ?Carbon $edited_at;
+    public bool $favourited;
+    public bool $reblogged;
+    public bool $muted;
+    public bool $bookmarked;
+    public bool $pinned;
     public string $content;
     public ?string $reblog;
     public Application $application;

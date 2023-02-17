@@ -1,0 +1,92 @@
+{
+    "id": "109825403503402367",
+    "created_at": "2023-02-07T20:44:25.764Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "private",
+    "language": "en",
+    "uri": "https:\/\/mastobotti.eu\/users\/duukkis\/statuses\/109825403503402367",
+    "url": "https:\/\/mastobotti.eu\/@duukkis\/109825403503402367",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "favourited": false,
+    "reblogged": false,
+    "muted": false,
+    "bookmarked": false,
+    "pinned": false,
+    "content": "<p><a href=\"https:\/\/mastobotti.eu\/tags\/kala\" class=\"mention hashtag\" rel=\"tag\">#<span>kala<\/span><\/a> <a href=\"https:\/\/mastobotti.eu\/tags\/hevonen\" class=\"mention hashtag\" rel=\"tag\">#<span>hevonen<\/span><\/a> <span class=\"h-card\"><a href=\"https:\/\/mastobotti.eu\/@sananlasku\" class=\"u-url mention\">@<span>sananlasku<\/span><\/a><\/span> <br \/>\ud83d\ude1a \ud83d\udc68\u200d\ud83e\uddb3<\/p>",
+    "filtered": [],
+    "reblog": null,
+    "application": {
+        "name": "Web",
+        "website": null
+    },
+    "account": {
+        "id": "109807491887075545",
+        "username": "duukkis",
+        "acct": "duukkis",
+        "display_name": "duukkis",
+        "locked": true,
+        "bot": false,
+        "discoverable": false,
+        "group": false,
+        "created_at": "2023-02-04T00:00:00.000Z",
+        "note": "<p>Ota yhteys <span class=\"h-card\"><a href=\"https:\/\/mas.to\/@duukkis\" class=\"u-url mention\">@<span>duukkis<\/span><\/a><\/span><\/p>",
+        "url": "https:\/\/mastobotti.eu\/@duukkis",
+        "avatar": "https:\/\/cdn.masto.host\/mastobottieu\/accounts\/avatars\/109\/807\/491\/887\/075\/545\/original\/5c3f2e9576f5ba72.png",
+        "avatar_static": "https:\/\/cdn.masto.host\/mastobottieu\/accounts\/avatars\/109\/807\/491\/887\/075\/545\/original\/5c3f2e9576f5ba72.png",
+        "header": "https:\/\/cdn.masto.host\/mastobottieu\/accounts\/headers\/109\/807\/491\/887\/075\/545\/original\/3e96455b8fd7d8d9.jpeg",
+        "header_static": "https:\/\/cdn.masto.host\/mastobottieu\/accounts\/headers\/109\/807\/491\/887\/075\/545\/original\/3e96455b8fd7d8d9.jpeg",
+        "followers_count": 0,
+        "following_count": 7,
+        "statuses_count": 24,
+        "last_status_at": "2023-02-16",
+        "noindex": false,
+        "emojis": [],
+        "roles": [
+            {
+                "id": "3",
+                "name": "Owner",
+                "color": ""
+            }
+        ],
+        "fields": [
+            {
+                "name": "simo",
+                "value": "kalle",
+                "verified_at": null
+            },
+            {
+                "name": "juhuu",
+                "value": "bbbd",
+                "verified_at": null
+            }
+        ]
+    },
+    "media_attachments": [],
+    "mentions": [
+        {
+            "id": "109813358132109935",
+            "username": "sananlasku",
+            "url": "https:\/\/mastobotti.eu\/@sananlasku",
+            "acct": "sananlasku"
+        }
+    ],
+    "tags": [
+        {
+            "name": "kala",
+            "url": "https:\/\/mastobotti.eu\/tags\/kala"
+        },
+        {
+            "name": "hevonen",
+            "url": "https:\/\/mastobotti.eu\/tags\/hevonen"
+        }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+}

@@ -1,5 +1,8 @@
 <?php
+
 declare(strict_types=1);
+
+namespace unit;
 
 use PHPUnit\Framework\TestCase;
 use Maphpodon\Maphpodon;
