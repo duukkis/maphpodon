@@ -120,8 +120,7 @@ class Maphpodon
             }
             $params["headers"] = $headers;
             $response = $this->client->post($url, $params);
-            $x = $this->parseJson($response->getBody()->getContents(), "upload", $url, $params);
-            return $x;
+            return $this->parseJson($response->getBody()->getContents(), "upload", $url, $params);
         } catch (Exception $exception) {
             $this->exceptionCatcher->handleException($exception);
         }

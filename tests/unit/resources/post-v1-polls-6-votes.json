@@ -1,0 +1,28 @@
+{
+    "id": "6",
+    "expires_at": "2023-02-16T07:47:15.274Z",
+    "expired": false,
+    "multiple": true,
+    "votes_count": 2,
+    "voters_count": 1,
+    "voted": true,
+    "own_votes": [
+        0,
+        2
+    ],
+    "options": [
+        {
+            "title": "One",
+            "votes_count": 1
+        },
+        {
+            "title": "Two",
+            "votes_count": 0
+        },
+        {
+            "title": "Three",
+            "votes_count": 1
+        }
+    ],
+    "emojis": []
+}

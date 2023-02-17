@@ -14,7 +14,7 @@ class Account extends Model
     public bool $bot;
     public ?bool $discoverable;
     public ?bool $group;
-    public string $created_at;
+    public ?Carbon $created_at;
     public ?string $note;
     public string $url;
     public string $avatar;
@@ -27,6 +27,7 @@ class Account extends Model
     public ?Carbon $last_status_at;
     public ?bool $noindex;
     public array $emojis = [];
+    public ?array $roles = [];
     public ?array $fields = [];
 
     public array $mapArrayToObjects = [
