@@ -265,13 +265,15 @@ class Status extends Model
 ```
 ## Exceptions
 
-Created Interface ExceptionCatcher that can be overwritten with any Catcher that handles the GuzzleException.
+Created Interface ExceptionCatcher that can be overwritten with any Catcher that handles the GuzzleException. Default will just rethrow the Exception.
 For an example created DevelopmentExceptionCatcher into helpers dir.
 
+## Testing
+
+There is a basic phpunit setup.
 
 ## Lorem Ipsum
 
 Naming is done according the path. /api/v1/accounts is in entities/Accounts and /api/v1/accounts/follow is a follow function.
-Have not done any unit tests yet for this. Those will be achieved by getting the jsons and faking the Guzzle Client passed into Maphpodon class. Not sure is it worth the while.
 
-ps. Learning the ropes here on composer stuff, but code wise I know what I'm doing. Most of the time.
+Have Fun!
