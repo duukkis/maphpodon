@@ -4,6 +4,9 @@
          xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
         <description>Ruleset</description>
 
+    <file>src</file>
+    <file>tests/unit</file>
+
     <rule ref="PSR12">
     </rule>
     <!-- Mastodon method names contain underscores -->
